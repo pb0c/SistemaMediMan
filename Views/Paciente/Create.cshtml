@@ -1,0 +1,154 @@
+﻿@model List<SistemaMediMan.Models.ViewModels.ListPacienteViewModel>
+
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Paciente</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <main>
+            <div class="container">
+                <!--encabezado-->
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12 d-flex justify-content-center">
+                        <label for="nueva" class="h4"></label>
+                    </div>
+                </div><!--fin encabezado-->
+                <!--vista paciente-->
+                <form action="/Views/Paciente/Index.cshtml" method="POST">
+                    <div class="row">
+                        <!--inicio row 1-->
+                    </div><!--fin row 1-->
+                    <div class="row">
+                        <!--inicio row 2-->
+                        <div class="form-group col-lg-3 col-sm-3 my-1">
+                            <label>RUT</label>
+                            <input type="text" class="form-control" name="rut" placeholder="xx.xxx.xxx-x" required>
+                        </div>
+                        <div class="form-group col-lg-3 col-sm-3 my-1">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control" name="nombre" placeholder="Ingrese Nombre" required>
+                        </div>
+                        <div class="form-group col-lg-3 col-sm-3 my-1">
+                            <label>Apellido Paterno</label>
+                            <input type="text" class="form-control" name="apellidoP" placeholder="Ingrese Apellido" required>
+                        </div>
+                        <div class="form-group col-lg-3 col-sm-3 my-1">
+                            <label>Apellido Materno</label>
+                            <input type="text" class="form-control" name="apellidoM" placeholder="Ingrese Apellido">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--fin row 2-->
+                        <div class="row">
+                            <!--inicio row 3-->
+
+                            <div class="form-group col-lg-3 col-sm-3 my-1">
+                                <label for="">Previsión</label>
+                                <select name="prevision" id="prevision" class="form-control" required>
+                                    <option value="">Seleccione</option>
+                                    <option value="Fonasa">Fonasa</option>
+                                    <option value="Cruz Blanca">Cruz Blanca</option>
+                                    <option value="Banmedica">Banmédica</option>
+                                    <option value="Consalud">Consalud</option>
+                                    <option value="Nueva MasVida">Nueva MasVida</option>
+                                    <option value="Vida Tres">Vida Tres</option>
+                                    <option value="Colmena">Colmena</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-3 col-sm-3 my-1">
+                                <label for="">Fecha de Nacimiento</label>
+                                <input type="date" class="form-control" name="nacimiento" id="" required>
+                            </div>
+                            <select name="edad" id="">
+                                @for (var i = 0; i < 100; i++)
+                                {
+                                    <option value="'i'">i</option>
+                                }
+                            </select>
+                        </div><!--fin row 3-->
+                        <div class="row">
+                            <!--inicio row 4-->
+                            <div class="form-group col-lg-3 col-sm-3 my-1">
+                                <label for="">Sexo</label>
+                                <select name="sexo" id="sexo" class="form-control" require>
+                                    <option value="">Seleccione</option>
+                                    <option value="0">Femenino</option>
+                                    <option value="1">Masculino</option>
+                                </select>
+
+                            </div>
+                            <div class="form-group col-lg-3 col-sm-3 my-1">
+                                <label for="">Teléfono</label>
+                                <input type="text" class="form-control" name="telefono" id="" placeholder="Ej. 9-12312312" required>
+                            </div>
+                            <div class="form-group col-lg-3 col-sm-3 my-1">
+                                <label for="">Actividad</label>
+                                <select name="actividad" id="actividad" class="form-control">
+                                    <option value="">Seleccione</option>
+                                    <!--lista tab actividad-->
+
+
+                                    @foreach (var actividades in Model)
+                                    {
+                                        <option value="@actividades.Id">@actividades.Nombre</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-3 col-sm-3 my-1">
+                                <label for="">Deporte</label>
+                                <select name="deporte" id="deporte" class="form-control">
+                                    <option value="">Seleccione</option>
+                                    <!--lista tab deporte-->
+                                    @foreach (var deportes in Model) {
+                                    <option value="@deportes.Id">@deportes.Nombre</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-12 col-sm-12 my-1">
+                                <label for="">Dirección</label>
+                            </div>
+                            <div class="form-group col-lg-3 col-sm-3 my-1">
+                                <input type="text" class="form-control" name="calle" id="" placeholder="Nombre calle" require>
+                            </div>
+                            <div class="form-group col-lg-3 col-sm-3 my-1">
+                                <input type="text" class="form-control" name="numero" id="" placeholder="Número" require>
+                            </div>
+                            <div class="form-group col-lg-3 col-sm-3 my-1">
+                                <input type="text" class="form-control" name="" id="dpto" placeholder="Dpto">
+                            </div>
+                            <div class="form-group col-lg-3 col-sm-3 my-1">
+                                <input type="text" class="form-control" name="comuna" id="" placeholder="Comuna">
+                            </div>
+                        </div><!--fin row-->
+                        <div class="row">
+                            <div class="offset-lg-10 col-lg-2 offset-sm-10 col-sm-2">
+                                <button type="submit" class="btn" name="guardar">Guardar</button>
+                            </div>
+                        </div>
+                </form>
+            </div><!--fin container-->
+
+
+
+        </main>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

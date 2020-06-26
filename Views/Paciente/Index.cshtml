@@ -1,0 +1,76 @@
+﻿@model List<SistemaMediMan.Models.ViewModels.ListPacienteViewModel>
+
+    <!--IEnumerable<SistemaMediMan.Models.PACIENTES>-->
+    @{
+
+        Layout = "~/Views/Shared/_Layout.cshtml";
+        ViewBag.Title = "Listado Pacientes";
+    }
+
+
+    <h2>@ViewBag.Title</h2>
+    <main>
+        <!--Inicio container-->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-sm-10">
+                    <table class="table table-light">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Rut</th>
+                                <th>Nombre</th>
+                                <th>Fecha de Nacimiento</th>
+                                <th>Edad</th>
+                                <th>Sexo</th>
+                                <th>Teléfono</th>
+                                <th>Previsión</th>
+                                <th>Dirección</th>
+                                <th>Actividad</th>
+                                <th>Deporte</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                @foreach (var pacientes in Model)
+                                {
+                                    <td>@pacientes.Id</td>
+                                    <td>@pacientes.Rut</td>
+                                    <td>@pacientes.Nombre.(' ').@pacientes.ApellidoP.(' ')@pacientes.ApellidoM</td>
+                                    <td>@pacientes.Fdenac</td>
+                                    <td>@pacientes.Edad</td>
+                                    <td>@pacientes.Sexo</td>
+                                    <td>@pacientes.Telefono</td>
+                                    <td>@pacientes.Prevision</td>
+                                    <td>@pacientes.Calle.(' ').@pacientes.Numero.(' ').@pacientes.Dpto.(', ').@pacientes.Comuna</td>
+                                    <td>@pacientes.Act</td>
+                                    <td>@pacientes.Dep</td>
+
+                                    <td>
+                                        <a class="btn btn-warning" href="">Editar</a>
+                                        <form action="" method="POST" style="display:inline">
+                                            <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea eliminar el registro?');">Eliminar</button>
+                                        </form>
+
+                                        <form action="" method="GET" style="display:inline">
+                                            <button class="btn " type="submit" onclick="">Ver Fichas</button>
+                                        </form>
+
+                                    </td>
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <form action="~/Views/Paciente/Create.cshtml" method="get">
+                <div class="row">
+                    <div class="offset-lg-10 col-lg-2 offset-sm-10 col-sm-2">
+                        <button class="btn">Nuevo Paciente</button>
+                    </div>
+                </div>
+            </form>
+        </div> <!--fin container-->
+    </main>
+

@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace mediMan.Models
+{
+    public class Actividad
+    {
+        private int _id;
+        private string _nombre;
+
+        private int Id { get; set; }
+        private string Nombre { get; set; }
+
+        public Actividad()
+        {
+            this.Init();
+        }
+
+        private void Init()
+        {
+            
+            Nombre = string.Empty;
+        }
+    }
+
+    
+}

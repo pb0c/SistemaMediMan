@@ -1,0 +1,168 @@
+@import url('http://fonts.googleapis.com/css?family=Roboto');
+
+body{
+	font-family: 'Roboto', sans-serif;
+	background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url(img/rehab2.jpg) no-repeat;
+	background-size: cover;
+	background-position: absolute;
+	background-attachment: fixed;
+    background-color: rgba(25,109,200, .5);
+    margin-top: 80px;
+    margin-bottom: 80px;
+
+	/*Compatibilidad*/
+	-moz-background-size:cover;
+	-o-background-size:cover;
+
+ }
+
+ header{
+	 background-color: #196dc8;
+
+ }
+
+ .fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.bg-dark {
+    background-color: #196dc8!important;
+}
+
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+	padding: 0px 20px 0px;
+}
+
+.navbar input{
+	height: 20px;
+	margin-top: 25px;
+}
+.navbar button{
+	height: 20px;
+	width: 20px;
+	border-radius: 5px;
+	border: 0;
+	font-size: 15px;
+	margin-left: 5px;
+	margin-top: 30px;
+}
+
+ .logo{
+	 padding-top: 5px;
+ }
+
+ .navbar label{
+	 font-family:'Roboto', sans-serif;
+	 color: #fff;
+	 font-size: 12px;
+ }
+
+ .navbar::before{
+	font-family: 'Font Awesome\ 5 free';
+	content: "\f002";
+	position: absolute;
+	font-size: 15px;
+	color: #134C89;
+	padding: 37px 0px 0 5px;
+}
+
+html{
+	position: relative;
+	min-height: 100%;
+}
+
+footer{
+	 background-color: #196DC8;
+	 position: absolute;
+	 bottom: 0;
+	 width: 100%;
+
+ }
+ 
+ .footer-copyright{
+	 text-align: right;
+ }
+
+ .container{
+    background-color: #fff;
+}
+
+.h4{
+    font-size: 30px;
+    position: relative;
+    align-content: center;
+    text-align: center;
+}
+.form-group{
+    font-family: 'Roboto', sans-serif;
+}
+
+.form-group input{
+   height: 30px;
+   border: 1;
+   font-size: 16px;
+   padding-left: 16px;
+   margin-top: 5px;
+   margin-bottom: 5px;
+   width: 100%;
+}
+
+.form-group label{
+    font-size: 12px;
+    padding-left: 5px;
+    margin-bottom: 0px;
+    margin-top: 5px;
+}
+
+.btn{
+    width: 50%;
+    height: 30px;
+    margin: 5px 0 25px;
+
+}
+
+.btn::before{
+    font-family: 'Font Awesome\ 5 free';
+	content: "\f002";
+	position: relative;
+    color: #fff;
+}
+
+.btn{
+    background-color: #134C89;
+    color: #fff;
+    font-size: 16px;
+    padding: 7px 14px;
+    border-radius: 15px;
+    border-bottom: 4px solid #0A2542;
+    opacity: .99;
+}
+
+.btn2{
+    width: 100%;
+    height: 30px;
+    margin: 5px 0 25px;
+
+}
+
+.btn2{
+    background-color: #134C89;
+    color: #fff;
+    font-size: 16px;
+    padding: 7px 14px;
+    border-radius: 15px;
+    border-bottom: 4px solid #0A2542;
+    opacity: .99;
+}
+
+
