@@ -14,6 +14,7 @@ namespace SistemaMediMan.Models
 		private string _apellidoM;
 		private DateTime _fdenac;
 		private int _edad;
+		private bool _sexo;
 		private string _telefono;
 		private string _prevision;
 		private string _calle;
@@ -29,6 +30,7 @@ namespace SistemaMediMan.Models
 		private string ApellidoM { get; set; }
 		private DateTime Fdenac { get; set; }
 		private int Edad { get; set; }
+		private bool Sexo { get; set; }
 		private string Telefono { get; set; }
 		private string Prevision { get; set; }
 		private string Calle { get; set; }
@@ -49,6 +51,8 @@ namespace SistemaMediMan.Models
 			ApellidoP = string.Empty;
 			ApellidoM = string.Empty;
 			Fdenac = new DateTime(1900, 1, 1);
+			Edad = 0;
+			Sexo = false;
 			Telefono = string.Empty;
 			Prevision = string.Empty;
 			Calle = string.Empty;
@@ -57,7 +61,7 @@ namespace SistemaMediMan.Models
 			Dep_id = Dep_id;
 		}
 
-		public Paciente(int id, string rut, string nombre, string apellidoP, string apellidoM, DateTime fdenac, string telefono, string prevision, string calle, int numCalle, string comuna, Actividad actividad, Deporte deporte)
+		public Paciente(int id, string rut, string nombre, string apellidoP, string apellidoM, DateTime fdenac, int edad, bool sexo, string telefono, string prevision, string calle, int numCalle, string comuna, Actividad actividad, Deporte deporte)
         {
 			this._id = id;
 			this._rut = rut;
@@ -65,6 +69,8 @@ namespace SistemaMediMan.Models
 			this._apellidoP = apellidoP;
 			this._apellidoM = apellidoM;
 			this._fdenac = fdenac;
+			this._edad = edad;
+			this._sexo = sexo;
 			this._telefono = telefono;
 			this._prevision = prevision;
 			this._calle = calle;

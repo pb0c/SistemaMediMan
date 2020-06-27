@@ -1,4 +1,4 @@
-﻿using mediMan.Models;
+﻿using SistemaMediMan.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +8,12 @@ namespace SistemaMediMan.Models.ViewModels
 {
     public class ListConsultaViewModel
     {
-        private int Id { get; set; }
-        private DateTime Hora { get; set; }
-        private DateTime Fecha { get; set; }
-        private int Box { get; set; }
-        private int Sesion { get; set; }
-        private Paciente Paciente_id { get; set; }
-        private Empleado Empleado_id { get; set; }
+        public int Id { get; set; }
+        public DateTime Hora { get; set; }
+        public DateTime Fecha { get; set; }
+        public int Box { get; set; }
+        public int Sesion { get; set; }
+        public Paciente Paciente_id { get; set; }
+        public Empleado Empleado_id { get; set; }
     }
 }

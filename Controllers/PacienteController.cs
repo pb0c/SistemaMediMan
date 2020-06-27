@@ -4,7 +4,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using mediMan.Models;
 using SistemaMediMan.Models;
 using SistemaMediMan.Models.ViewModels;
 
@@ -53,12 +52,14 @@ namespace SistemaMediMan.Controllers
         // GET: Paciente/Create
         public ActionResult Create()
         {
+
+
             return View();
         }
 
         // POST: Paciente/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Paciente paciente)
         {
             try
             {

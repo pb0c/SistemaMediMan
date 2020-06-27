@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SistemaMediMan.Models;
+using SistemaMediMan.Models.ViewModels;
 
 namespace SistemaMediMan.Controllers
 {
@@ -11,7 +13,25 @@ namespace SistemaMediMan.Controllers
         // GET: Empleado
         public ActionResult Index()
         {
-            return View();
+            List<ListEmpleadoViewModel> lista;
+            using (mediManEntities db = new mediManEntities())
+            {
+                lista = (from d in db.EMPLEADOS
+                         select new ListEmpleadoViewModel
+                         {
+                             Id = d.ID,
+                             Rut = d.RUT,
+                             Nombre = d.NOMBRE,
+                             ApellidoP = d.APELLIDOP,
+                             ApellidoM = d.APELLIDOM,
+                             Telefono = d.TELEFONO,
+                             Rol = d.ROL,
+                             User = d.USER,
+                             Pass = d.PASS,
+
+                         }).ToList();
+            }
+            return View(lista);
         }
 
         // GET: Deporte/Details/5

@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using SistemaMediMan.Models;
 
 namespace SistemaMediMan.Models.ViewModels
 {
     public class ListActividadViewModel
     {
-        private int Id { get; set; }
-        private string Nombre { get; set; }
+        public int Id { get; set; }
+        public string Nombre { get; set; }
     }
 }
