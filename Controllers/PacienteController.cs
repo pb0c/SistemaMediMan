@@ -61,16 +61,7 @@ namespace SistemaMediMan.Controllers
         [HttpPost]
         public ActionResult Create(Paciente paciente)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
 
         // GET: Paciente/Edit/5

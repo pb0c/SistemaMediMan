@@ -107,15 +107,14 @@ footer{
     font-family: 'Roboto', sans-serif;
 }
 
-.form-group input{
-   height: 30px;
-   border: 1;
-   font-size: 16px;
-   padding-left: 16px;
-   margin-top: 5px;
-   margin-bottom: 5px;
-   width: 100%;
-}
+	.form-group input {
+		height: 30px;
+		width: 200px;
+		border-radius: 10px;
+		border: 0;
+		font-size: 15px;
+		margin-bottom: -50px;
+	}
 
 .form-group label{
     font-size: 12px;
@@ -134,17 +133,17 @@ footer{
    width: 100%;
 }
 
-button{
-    width: 100%;
-    margin: 5px 0 25px;
-}
+	.form-group button {
+		width: 30px;
+		height: 30px;
+		margin-top: 20px;
+		margin-left: 210px;
+	}
 
-.btn{
-    background-color: #134C89;
-    color: #fff;
-    font-size: 16px;
-    padding: 7px 14px;
-    border-radius: 15px;
-    border-bottom: 4px solid #0A2542;
-    opacity: .99;
+.btn {
+	background-color: #134C89;
+	color: #fff;
+	font-size: 18px;
+	border-bottom: 4px solid #0A2542;
+	opacity: .99;
 }

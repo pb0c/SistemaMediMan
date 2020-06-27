@@ -24,6 +24,7 @@ namespace SistemaMediMan
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Paciente", action = "Index", id = UrlParameter.Optional }
             );
+
         }
     }
 }
