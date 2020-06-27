@@ -267,13 +267,13 @@
     <Content Include="Views\Paciente\Index.cshtml" />
     <Content Include="Views\Paciente\Details.cshtml" />
     <Content Include="Views\Paciente\Create.cshtml" />
+    <Content Include="Views\Empleado\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Actividad\" />
     <Folder Include="Views\Consulta\" />
     <Folder Include="Views\Deporte\" />
-    <Folder Include="Views\Empleado\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
