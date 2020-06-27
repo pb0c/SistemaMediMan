@@ -48,17 +48,36 @@ namespace SistemaMediMan.Controllers
 
         // POST: Deporte/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ListEmpleadoViewModel empleado)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    using (mediManEntities db = new mediManEntities())
+                    {
+                        var emp = new EMPLEADOS();
+                        emp.RUT = empleado.Rut;
+                        emp.NOMBRE = empleado.Nombre;
+                        emp.APELLIDOP = empleado.ApellidoP;
+                        emp.APELLIDOM = empleado.ApellidoM;
+                        emp.TELEFONO = empleado.Telefono;
+                        emp.ROL = empleado.Rol;
+                        emp.USER = empleado.User;
+                        emp.PASS = empleado.Pass;
 
-                return RedirectToAction("Index");
+                        db.EMPLEADOS.Add(emp);
+                        db.SaveChanges();
+                    }
+                    return RedirectToAction("Index");
+                }
+                return View(empleado);
+                
             }
-            catch
+            catch(Exception e)
             {
-                return View();
+                throw new Exception(e.Message);
+                
             }
         }
 

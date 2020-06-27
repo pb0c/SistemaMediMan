@@ -14,7 +14,6 @@ namespace SistemaMediMan.Models
 		private string _apellidoM;
 		private DateTime _fdenac;
 		private int _edad;
-		private bool _sexo;
 		private string _telefono;
 		private string _prevision;
 		private string _calle;
@@ -23,21 +22,19 @@ namespace SistemaMediMan.Models
 		private Actividad _actividad;
 		private Deporte _deporte;
 
-		private int Id { get; set; }
 		private string Rut { get; set; }
 		private string Nombre { get; set; }
 		private string ApellidoP { get; set; }
 		private string ApellidoM { get; set; }
 		private DateTime Fdenac { get; set; }
 		private int Edad { get; set; }
-		private bool Sexo { get; set; }
-		private string Telefono { get; set; }
-		private string Prevision { get; set; }
+		private string Tel { get; set; }
+		private string Prev { get; set; }
 		private string Calle { get; set; }
 		private int Num { get; set; }
 		private string Comuna { get; set; }
-		private Actividad Act_id { get; set; }
-		private Deporte Dep_id { get; set; }
+		private Actividad Act { get; set; }
+		private Deporte Dep { get; set; }
 
 		public Paciente()
 		{
@@ -51,17 +48,15 @@ namespace SistemaMediMan.Models
 			ApellidoP = string.Empty;
 			ApellidoM = string.Empty;
 			Fdenac = new DateTime(1900, 1, 1);
-			Edad = 0;
-			Sexo = false;
-			Telefono = string.Empty;
-			Prevision = string.Empty;
+			Tel = string.Empty;
+			Prev = string.Empty;
 			Calle = string.Empty;
 			Num = 0;
-			Act_id = Act_id;
-			Dep_id = Dep_id;
+			Act = Act;
+			Dep = Dep;
 		}
 
-		public Paciente(int id, string rut, string nombre, string apellidoP, string apellidoM, DateTime fdenac, int edad, bool sexo, string telefono, string prevision, string calle, int numCalle, string comuna, Actividad actividad, Deporte deporte)
+		public Paciente(int id, string rut, string nombre, string apellidoP, string apellidoM, DateTime fdenac, string telefono, string prevision, string calle, int numCalle, string comuna, Actividad actividad, Deporte deporte)
         {
 			this._id = id;
 			this._rut = rut;
@@ -69,8 +64,6 @@ namespace SistemaMediMan.Models
 			this._apellidoP = apellidoP;
 			this._apellidoM = apellidoM;
 			this._fdenac = fdenac;
-			this._edad = edad;
-			this._sexo = sexo;
 			this._telefono = telefono;
 			this._prevision = prevision;
 			this._calle = calle;

@@ -33,7 +33,7 @@ namespace SistemaMediMan.Controllers
                              Sexo = d.SEXO,
                              Telefono = d.TELEFONOP,
                              Prevision=d.PREVISION,
-                             Calle=d.CALLE,
+                             Calle = d.CALLE,
                              Numero=d.NUMCALLE,
                              Dpto = d.DPTO,
                              Comuna=d.COMUNA,
@@ -52,16 +52,46 @@ namespace SistemaMediMan.Controllers
         // GET: Paciente/Create
         public ActionResult Create()
         {
-
-
             return View();
         }
 
         // POST: Paciente/Create
         [HttpPost]
-        public ActionResult Create(Paciente paciente)
+        public ActionResult Create(ListPacienteViewModel paciente)
+
         {
-            return View();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    using (mediManEntities db = new mediManEntities())
+                    {
+                        var pac = new PACIENTES();
+                        pac.RUT = paciente.Rut;
+                        pac.NOMBRE = paciente.Nombre;
+                        pac.APELLIDOP = paciente.ApellidoP;
+                        pac.APELLIDOM = paciente.ApellidoM;
+                        pac.EDAD = paciente.Edad;
+                        pac.SEXO = paciente.Sexo;
+                        pac.TELEFONOP = paciente.Telefono;
+                        pac.PREVISION = paciente.Prevision;
+                        pac.CALLE = paciente.Calle;
+                        pac.NUMCALLE = paciente.Numero;
+                        pac.DPTO = paciente.Dpto;
+                        pac.COMUNA = paciente.Comuna;
+
+                        db.PACIENTES.Add(pac);
+                        db.SaveChanges();
+                    }
+                    return Redirect("~/Paciente/");
+                }
+                return View(paciente);
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            
         }
 
         // GET: Paciente/Edit/5

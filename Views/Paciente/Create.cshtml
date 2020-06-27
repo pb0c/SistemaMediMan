@@ -1,160 +1,198 @@
-﻿@model List<SistemaMediMan.Models.ViewModels.ListPacienteViewModel>
+﻿@model SistemaMediMan.Models.ViewModels.ListPacienteViewModel
 
 
 @{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Nuevo Paciente";
 }
-
-<h2></h2>
-<link href="~/Content/estiloPaciente.css" rel="stylesheet" />
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+    <div class="form-horizontal ">
+        <!--encabezado-->
         <h4>Paciente</h4>
+        <!--fin encabezado-->
         <hr />
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <main>
-            <div class="container">
-                <!--encabezado-->
-                <div class="row">
-                    <div class="col-lg-12 col-sm-12 d-flex justify-content-center">
-                        <label for="nueva" class="h4"></label>
-                    </div>
-                </div><!--fin encabezado-->
+
                 <!--vista paciente-->
-                <form action="@Url.Action("Create","PacienteController")" method="POST">
-                    <div class="row">
-                        <!--inicio row 1-->
-                    </div><!--fin row 1-->
-                    <div class="row">
-                        <!--inicio row 2-->
-                        <div class="form-group col-lg-3 col-sm-3 my-1">
-                            <label>RUT</label>
-                            <input type="text" class="form-control" name="Rut" placeholder="xx.xxx.xxx-x" required>
-                        </div>
-                        <div class="form-group col-lg-3 col-sm-3 my-1">
-                            <label>Nombre</label>
-                            <input type="text" class="form-control" name="Nombre" placeholder="Ingrese Nombre" required>
-                        </div>
-                        <div class="form-group col-lg-3 col-sm-3 my-1">
-                            <label>Apellido Paterno</label>
-                            <input type="text" class="form-control" name="ApellidoP" placeholder="Ingrese Apellido" required>
-                        </div>
-                        <div class="form-group col-lg-3 col-sm-3 my-1">
-                            <label>Apellido Materno</label>
-                            <input type="text" class="form-control" name="ApellidoM" placeholder="Ingrese Apellido">
-                        </div>
+                <div class="">
+                    <!--inicio row 1 <form action="Url.Action("Create","PacienteController")" method="POST">-->
+                </div><!--fin row 1-->
+                <div class="row">
+                    <!--inicio row 2-->
+                    <div class="form-group col-lg-3 col-sm-3 my-1">
+                        @Html.LabelFor(d => d.Rut)
+                        @Html.TextBoxFor(d => d.Rut, new { placeholder = "RUT", @class = "form-control" });
+                        @Html.ValidationMessageFor(d => d.Rut,null,new { @class="text-danger"})
                     </div>
+                    <div class="form-group col-lg-3 col-sm-3 my-1">
+                        @Html.LabelFor(d => d.Nombre)
+                        @Html.TextBoxFor(d => d.Nombre, "", new { placeholder = "Nombre", @class = "form-control" })
+                    </div>
+                    <div class="form-group col-lg-3 col-sm-3 my-1">
+                        @Html.LabelFor(d => d.ApellidoP)
+                        @Html.TextBoxFor(d => d.ApellidoP, "", new { placeholder = "Apellido Paterno", @class = "form-control" })
+                    </div>
+                    <div class="form-group col-lg-3 col-sm-3 my-1">
+                        @Html.LabelFor(d => d.ApellidoM)
+                        @Html.TextBoxFor(d => d.ApellidoM, "", new { placeholder = "Apellido Materno", @class = "form-control" })
+                    </div>
+                </div>
 
-                    <!--fin row 2-->
-                    <div class="row">
-                        <!--inicio row 3-->
-
-                        <div class="form-group col-lg-3 col-sm-3 my-1">
-                            <label for="">Previsión</label>
-                            <select name="Prevision" id="prevision" class="form-control" required>
-                                <option value="">Seleccione</option>
-                                <option value="Fonasa">Fonasa</option>
-                                <option value="Cruz Blanca">Cruz Blanca</option>
-                                <option value="Banmedica">Banmédica</option>
-                                <option value="Consalud">Consalud</option>
-                                <option value="Nueva MasVida">Nueva MasVida</option>
-                                <option value="Vida Tres">Vida Tres</option>
-                                <option value="Colmena">Colmena</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-lg-3 col-sm-3 my-1">
-                            <label for="">Fecha de Nacimiento</label>
-                            <input type="date" class="form-control" name="Fdenac" id="" required>
-                        <div class="form-group col-lg-3 col-sm-3 my-1">
-                        </div>
-                            <select name="edad" id="">
-                                @for (var i = 0; i < 100; i++)
-                                {
-                                    <option value="i">@i</option>
-                                }
-                            </select>
-                        </div>
-                        
-                    </div><!--fin row 3-->
-                    <div class="row">
-                        <!--inicio row 4-->
-                        <div class="form-group col-lg-3 col-sm-3 my-1">
-                            <label for="">Sexo</label>
-                            <select name="Sexo" id="sexo" class="form-control" require>
-                                <option value="">Seleccione</option>
-                                <option value="0">Femenino</option>
-                                <option value="1">Masculino</option>
-                            </select>
-
-                        </div>
-                        <div class="form-group col-lg-3 col-sm-3 my-1">
-                            <label for="">Teléfono</label>
-                            <input type="text" class="form-control" name="Telefono" id="" placeholder="Ej. 9-12312312" required>
-                        </div>
-                        <div class="form-group col-lg-3 col-sm-3 my-1">
-                            <label for="">Actividad</label>
-                            <select name="actividad" id="actividad" class="form-control">
-                                <option value="">Seleccione</option>
-                                <!--lista tab actividad-->
-                                <!--
-                                    foreach (var deportes in Model) {
-                                <option value="deportes">deportes.Nombre</option>
-                                }
-                                -->
-                            </select>
-                        </div>
-                        <!--
-                            foreach (var deportes in Model) {
-                        <option value="deportes">deportes.Nombre</option>
+                <!--fin row 2-->
+                <div class="row">
+                    <!--inicio row 3-->
+                    <div class="form-group col-lg-3 col-sm-3 my-1">
+                        @Html.LabelFor(d => d.Prevision)
+                        @{
+                            List<SelectListItem> listItems = new List<SelectListItem>();
+                            listItems.Add(new SelectListItem
+                            {
+                                Text = "Fonasa",
+                                Value = "Fonasa"
+                            });
+                            listItems.Add(new SelectListItem
+                            {
+                                Text = "Cruz Blanca",
+                                Value = "Cruz Blanca",
+                            });
+                            listItems.Add(new SelectListItem
+                            {
+                                Text = "Banmédica",
+                                Value = "Banmédica"
+                            });
+                            listItems.Add(new SelectListItem
+                            {
+                                Text = "Consalud",
+                                Value = "Consalud"
+                            });
+                            listItems.Add(new SelectListItem
+                            {
+                                Text = "Nueva MasVida",
+                                Value = "Nueva MasVida"
+                            });
+                            listItems.Add(new SelectListItem
+                            {
+                                Text = "Banmédica",
+                                Value = "Banmédica"
+                            });
+                            listItems.Add(new SelectListItem
+                            {
+                                Text = "Vida Tres",
+                                Value = "Vida Tres"
+                            });
+                            listItems.Add(new SelectListItem
+                            {
+                                Text = "Colmena",
+                                Value = "Colmena"
+                            });
                         }
-                        -->
-                        <div class="form-group col-lg-3 col-sm-3 my-1">
-                            <label for="">Deporte</label>
-                            <select name="deporte" id="deporte" class="form-control">
-                                <option value="">Seleccione</option>
-                                <!--lista tab deporte-->
-
-                            </select>
-                        </div>
-                        <div class="form-group col-lg-12 col-sm-12 my-1">
-                            <label for="">Dirección</label>
-                        </div>
-                        <div class="form-group col-lg-3 col-sm-3 my-1">
-                            <input type="text" class="form-control" name="Calle" id="" placeholder="Nombre calle" require>
-                        </div>
-                        <div class="form-group col-lg-3 col-sm-3 my-1">
-                            <input type="text" class="form-control" name="Numero" id="" placeholder="Número" require>
-                        </div>
-                        <div class="form-group col-lg-3 col-sm-3 my-1">
-                            <input type="text" class="form-control" name="" id="Dpto" placeholder="Dpto">
-                        </div>
-                        <div class="form-group col-lg-3 col-sm-3 my-1">
-                            <input type="text" class="form-control" name="Comuna" id="" placeholder="Comuna">
-                        </div>
-                    </div><!--fin row-->
-                    <div class="row">
-                        <div class="offset-lg-10 col-lg-2 offset-sm-10 col-sm-2">
-                            <button type="submit" class="btn" name="guardar">Guardar</button>
-                        </div>
+                        @Html.DropDownListFor(d => d.Prevision, listItems, "-- Seleccione --", new { @class = "form-control" })
                     </div>
-                </form>
+                    <div class="form-group col-lg-3 col-sm-3 my-1">
+                        @Html.LabelFor(d => d.Fdenac)
+                        @Html.TextBoxFor(d => d.Fdenac, "", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-lg-3 col-sm-3 my-1">
+                        @Html.LabelFor(d => d.Edad)
+                        <select name="Edad" id="" class="form-control">
+                            @for (var i = 0; i < 100; i++)
+                            {
+                                <option value="i">@i</option>
+                            }
+                        </select>
+                    </div>
+
+                </div><!--fin row 3-->
+                <div class="row">
+                    <!--inicio row 4-->
+                    <div class="form-group col-lg-3 col-sm-3 my-1">
+                        @Html.LabelFor(d => d.Sexo)
+                        @{
+                            List<SelectListItem> listSexo = new List<SelectListItem>();
+                            listSexo.Add(new SelectListItem
+                            {
+                                Text = "Femenino",
+                                Value = "0"
+                            });
+                            listSexo.Add(new SelectListItem
+                            {
+                                Text = "Masculino",
+                                Value = "1",
+                            });
+                        }
+                        @Html.DropDownListFor(d => d.Sexo, listSexo, "-- Seleccione --", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group col-lg-3 col-sm-3 my-1">
+                        @Html.LabelFor(d => d.Telefono)
+                        @Html.TextBoxFor(d => d.Telefono, "", new { placeholder = "Teléfono", @class = "form-control" })
+                        @Html.ValidationMessageFor(d => d.Telefono)
+                    </div>
+                    <div class="form-group col-lg-3 col-sm-3 my-1">
+                        <label for="">Actividad</label>
+                        <select name="actividad" id="actividad" class="form-control">
+                            <option value="">Seleccione</option>
+                            <!--lista tab actividad-->
+                            <!--
+                                foreach (var deportes in Model) {
+                            <option value="deportes">deportes.Nombre</option>
+                            }
+                            -->
+                        </select>
+                    </div>
+                    <!--
+                        foreach (var deportes in Model) {
+                    <option value="deportes">deportes.Nombre</option>
+                    }
+                    -->
+                    <div class="form-group col-lg-3 col-sm-3 my-1">
+                        <label for="">Deporte</label>
+                        <select name="deporte" id="deporte" class="form-control">
+                            <option value="">Seleccione</option>
+                            <!--lista tab deporte-->
+
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-12 col-sm-12 my-1">
+                        <label for="">Dirección</label>
+                    </div>
+                    <div class="form-group col-lg-3 col-sm-3 my-1">
+                        @Html.TextBoxFor(d => d.Calle, "", new { placeholder = "Nombre Calle", @class = "form-control" })
+                        @Html.ValidationMessageFor(d => d.Calle)
+                    </div>
+                    <div class="form-group col-lg-3 col-sm-3 my-1">
+                        @Html.TextBoxFor(d => d.Numero, "", new { placeholder = "Número Calle", @class = "form-control" })
+                        @Html.ValidationMessageFor(d => d.Numero)
+                    </div>
+                    <div class="form-group col-lg-3 col-sm-3 my-1">
+                        @Html.TextBoxFor(d => d.Dpto, "", new { placeholder = "Dpto", @class = "form-control" })
+                    </div>
+                    <div class="form-group col-lg-3 col-sm-3 my-1">
+                        @Html.TextBoxFor(d => d.Comuna, "", new { placeholder = "Comuna", @class = "form-control" })
+                        @Html.ValidationMessageFor(d => d.Comuna)
+                    </div>
+                </div><!--fin row 4-->
+                <div class="row">
+                    <div class="offset-lg-10 col-lg-2 offset-sm-10 col-sm-2">
+                        <button type="submit" class="btn" name="guardar">Guardar</button>
+                    </div>
+                </div>
+
+                <!--Fin post-->
+
+                
             </div><!--fin container-->
 
+        
+    }
 
-
-        </main>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Crear" class="btn btn-default" />
-            </div>
-        </div>
+<form action="@Url.Action("Index", "Paciente")" method="get">
+    <div class="offset-lg-10 col-lg-2 offset-sm-10 col-sm-2">
+        <button type="submit" class="btn" name="guardar">Volver</button>
     </div>
-}
+</form>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
