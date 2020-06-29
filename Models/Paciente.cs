@@ -56,7 +56,7 @@ namespace SistemaMediMan.Models
 			Dep = Dep;
 		}
 
-		public Paciente(int id, string rut, string nombre, string apellidoP, string apellidoM, DateTime fdenac, string telefono, string prevision, string calle, int numCalle, string comuna, Actividad actividad, Deporte deporte)
+		public Paciente(int id, string rut, string nombre, string apellidoP, string apellidoM, DateTime fdenac, int edad, string telefono, string prevision, string calle, int numCalle, string comuna, Actividad actividad, Deporte deporte)
         {
 			this._id = id;
 			this._rut = rut;
@@ -64,6 +64,7 @@ namespace SistemaMediMan.Models
 			this._apellidoP = apellidoP;
 			this._apellidoM = apellidoM;
 			this._fdenac = fdenac;
+			this.Edad = edad;
 			this._telefono = telefono;
 			this._prevision = prevision;
 			this._calle = calle;

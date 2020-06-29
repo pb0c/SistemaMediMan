@@ -28,7 +28,7 @@
                             { 
                             <td>@empleados.Id</td>
                             <td>@empleados.Rut</td>
-                            <td>@empleados.Nombre.( ).@empleados.ApellidoP.( ).@empleados.ApellidoM</td>
+                            <td>@empleados.Nombre @empleados.ApellidoP @empleados.ApellidoM</td>
                             <td>@empleados.Telefono</td>
                             <td>@empleados.Rol</td>
                             <td>@empleados.User</td>
@@ -44,7 +44,7 @@
                 </table>
             </div>
         </div>
-        <form action="" method="get">
+        <form action="@Url.Action("Create","Empleado")" method="get">
             <div class="row">
                 <div class="offset-lg-10 col-lg-2 offset-sm-10 col-sm-2">
                     <button class="btn">Nuevo Usuario</button>

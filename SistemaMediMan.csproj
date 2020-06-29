@@ -217,8 +217,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\DB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DB.Context.cs</LastGenOutput>
       <DependentUpon>DB.edmx</DependentUpon>
+      <LastGenOutput>DB.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\DB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -267,12 +267,12 @@
     <Content Include="Views\Paciente\Index.cshtml" />
     <Content Include="Views\Paciente\Details.cshtml" />
     <Content Include="Views\Empleado\Index.cshtml" />
-    <Content Include="Views\Paciente\Create.cshtml" />
     <Content Include="Views\Empleado\Create.cshtml" />
+    <Content Include="Views\Paciente\Create.cshtml" />
+    <Content Include="Views\Actividad\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Actividad\" />
     <Folder Include="Views\Consulta\" />
     <Folder Include="Views\Deporte\" />
   </ItemGroup>

@@ -48,7 +48,7 @@ namespace SistemaMediMan.Controllers
 
         // POST: Deporte/Create
         [HttpPost]
-        public ActionResult Create(ListEmpleadoViewModel empleado)
+        public ActionResult Create(ListEmpleadoViewModel model)
         {
             try
             {
@@ -57,21 +57,21 @@ namespace SistemaMediMan.Controllers
                     using (mediManEntities db = new mediManEntities())
                     {
                         var emp = new EMPLEADOS();
-                        emp.RUT = empleado.Rut;
-                        emp.NOMBRE = empleado.Nombre;
-                        emp.APELLIDOP = empleado.ApellidoP;
-                        emp.APELLIDOM = empleado.ApellidoM;
-                        emp.TELEFONO = empleado.Telefono;
-                        emp.ROL = empleado.Rol;
-                        emp.USER = empleado.User;
-                        emp.PASS = empleado.Pass;
+                        emp.RUT = model.Rut;
+                        emp.NOMBRE = model.Nombre;
+                        emp.APELLIDOP = model.ApellidoP;
+                        emp.APELLIDOM = model.ApellidoM;
+                        emp.TELEFONO = model.Telefono;
+                        emp.ROL = model.Rol;
+                        emp.USER = model.User;
+                        emp.PASS = model.Pass;
 
                         db.EMPLEADOS.Add(emp);
                         db.SaveChanges();
                     }
-                    return RedirectToAction("Index");
+                    return RedirectToAction("/");
                 }
-                return View(empleado);
+                return View(model);
                 
             }
             catch(Exception e)

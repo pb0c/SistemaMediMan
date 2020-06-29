@@ -16,7 +16,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EMP_ID" Type="int" Nullable="false" />
           <Property Name="PAC_ID" Type="int" Nullable="false" />
           <Property Name="HORA" Type="time" Precision="7" Nullable="false" />
@@ -28,14 +28,14 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DEPORTE" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="EMPLEADOS">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RUT" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="NOMBRE" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="APELLIDOP" Type="varchar" MaxLength="15" Nullable="false" />
@@ -49,7 +49,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PAC_ID" Type="int" Nullable="false" />
           <Property Name="MEDICO" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="TRATAMIENTO" Type="varchar" MaxLength="1024" Nullable="false" />
@@ -61,7 +61,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DEP_ID" Type="int" />
           <Property Name="ACT_ID" Type="int" />
           <Property Name="RUT" Type="varchar" MaxLength="10" Nullable="false" />
@@ -187,7 +187,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EMP_ID" Type="Int32" Nullable="false" />
           <Property Name="PAC_ID" Type="Int32" Nullable="false" />
           <Property Name="HORA" Type="Time" Nullable="false" Precision="7" />
@@ -201,7 +201,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DEPORTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="PACIENTES" Relationship="Self.FK_RELATIONSHIP_6" FromRole="DEPORTES" ToRole="PACIENTES" />
         </EntityType>
@@ -209,7 +209,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RUT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="NOMBRE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="APELLIDOP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
@@ -224,7 +224,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PAC_ID" Type="Int32" Nullable="false" />
           <Property Name="MEDICO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TRATAMIENTO" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
@@ -237,7 +237,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DEP_ID" Type="Int32" />
           <Property Name="ACT_ID" Type="Int32" />
           <Property Name="RUT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />

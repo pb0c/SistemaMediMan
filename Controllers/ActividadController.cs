@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SistemaMediMan.Models;
+using SistemaMediMan.Models.ViewModels;
+using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +14,18 @@ namespace SistemaMediMan.Controllers
         // GET: Actividad
         public ActionResult Index()
         {
-            return View();
+            List<ListActividadViewModel> lista;
+            using (mediManEntities db = new mediManEntities())
+            {
+                lista = (from d in db.ACTIVIDADES
+                         select new ListActividadViewModel
+                         {
+                             Id=d.ID,
+                             Nombre=d.ACTIVIDAD,
+
+                         }).ToList();
+            }
+                return View(lista);
         }
 
         // GET: Actividad/Details/5

@@ -25,6 +25,11 @@ namespace SistemaMediMan
                 defaults: new { controller = "Paciente", action = "Index", id = UrlParameter.Optional }
             );
 
+            routes.MapRoute(
+                name: "Empleado",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Empleado", action = "Index", id = UrlParameter.Optional }
+            );
         }
     }
 }

@@ -22,7 +22,7 @@ namespace SistemaMediMan.Models.ViewModels
 		[Display(Name ="Apellido Paterno")]
 		[RegularExpression("^[a-zA-z]+$", ErrorMessage = "Solo debe contener letras")]
 		public string ApellidoP { get; set; }
-		[Required]
+		
 		[Display(Name = "Apellido Materno")]
 		[RegularExpression("^[a-zA-z]+$", ErrorMessage = "Solo debe contener letras")]
 		public string ApellidoM { get; set; }
@@ -39,7 +39,7 @@ namespace SistemaMediMan.Models.ViewModels
 		[Required]
 		[Display(Name = "Telefono")]
 		[DataType(DataType.PhoneNumber)]
-		[RegularExpression(@"^\(? ([0 - 9]{1})\)?[-. ]? ([0 - 9]{8})$",ErrorMessage ="Número de teléfono no válido")]
+		//[RegularExpression(@"^\(? ([0 - 9]{1})\)?[-. ]? ([0 - 9]{8})$",ErrorMessage ="Número de teléfono no válido")]
 		public string Telefono { get; set; }
 		[Required]
 		[Display(Name = "Previsión")]

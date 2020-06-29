@@ -37,6 +37,7 @@ namespace SistemaMediMan.Controllers
                              Numero=d.NUMCALLE,
                              Dpto = d.DPTO,
                              Comuna=d.COMUNA,
+                             
 
                          }).ToList() ;
             }
@@ -57,7 +58,7 @@ namespace SistemaMediMan.Controllers
 
         // POST: Paciente/Create
         [HttpPost]
-        public ActionResult Create(ListPacienteViewModel paciente)
+        public ActionResult Create(ListPacienteViewModel model)
 
         {
             try
@@ -67,25 +68,26 @@ namespace SistemaMediMan.Controllers
                     using (mediManEntities db = new mediManEntities())
                     {
                         var pac = new PACIENTES();
-                        pac.RUT = paciente.Rut;
-                        pac.NOMBRE = paciente.Nombre;
-                        pac.APELLIDOP = paciente.ApellidoP;
-                        pac.APELLIDOM = paciente.ApellidoM;
-                        pac.EDAD = paciente.Edad;
-                        pac.SEXO = paciente.Sexo;
-                        pac.TELEFONOP = paciente.Telefono;
-                        pac.PREVISION = paciente.Prevision;
-                        pac.CALLE = paciente.Calle;
-                        pac.NUMCALLE = paciente.Numero;
-                        pac.DPTO = paciente.Dpto;
-                        pac.COMUNA = paciente.Comuna;
+                        pac.RUT = model.Rut;
+                        pac.NOMBRE = model.Nombre;
+                        pac.APELLIDOP = model.ApellidoP;
+                        pac.APELLIDOM = model.ApellidoM;
+                        pac.EDAD = model.Edad;
+                        pac.SEXO = model.Sexo;
+                        pac.TELEFONOP = model.Telefono;
+                        pac.PREVISION = model.Prevision;
+                        pac.CALLE = model.Calle;
+                        pac.NUMCALLE = model.Numero;
+                        pac.DPTO = model.Dpto;
+                        pac.COMUNA = model.Comuna;
+
 
                         db.PACIENTES.Add(pac);
                         db.SaveChanges();
                     }
-                    return Redirect("~/Paciente/");
+                    return Redirect("Index/");
                 }
-                return View(paciente);
+                return View(model);
             }
             catch(Exception e)
             {
