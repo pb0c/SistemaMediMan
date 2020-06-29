@@ -1,29 +1,37 @@
-﻿
+﻿@model List<SistemaMediMan.Models.ViewModels.ListConsultaViewModel>
+
 @{
-    ViewBag.Title = "Actividades";
+    ViewBag.Title = "Consultas";
 }
 
-<h2>@ViewBag.Title</h2>
-
+<h2>@ViewBag</h2>
 <main>
-    <!--Inicio container-->
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-10 col-sm-10">
+            <div class="offset-lg-1 offset-sm-1 col-lg-10 col-sm-10">
                 <table class="table table-light">
                     <thead class="thead-light">
                         <tr>
                             <th>#</th>
-                            <th>Actividad</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Box</th>
+                            <th>N° Sesión</th>
+                            <th>Paciente</th>
+                            <th>Kinesiólogo</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            @foreach (var actividades in Model)
-                            {
-                                <td>@actividades.Id</td>
-                                <td>@actividades.Nombre</td>
 
+                        <tr>
+                            @foreach (var consulta in Model)
+                            {
+                                <td>@consulta.Id</td>
+                                <td>@consulta.FechaHora</td>
+                                <td>@consulta.Box</td>
+                                <td>@consulta.Sesion</td>
+                                <td>@consulta.Paciente_id</td>
+                                <td>@consulta.Empleado_id</td>
                                 <td>
                                     <a class="btn btn-warning" href="">Editar</a>
                                     <form action="" method="POST" style="display:inline">
@@ -36,14 +44,13 @@
                 </table>
             </div>
         </div>
-        <form action="@Url.Action("Create","Actividad")" method="get">
+        <form action="@Url.Action("Create","Empleado")" method="get">
             <div class="row">
                 <div class="offset-lg-10 col-lg-2 offset-sm-10 col-sm-2">
-                    <button class="btn">Agregar</button>
+                    <button class="btn">Nuevo Usuario</button>
                 </div>
             </div>
         </form>
     </div> <!--fin container-->
 </main>
-
 

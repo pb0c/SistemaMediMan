@@ -1,29 +1,28 @@
-﻿
+﻿@model List<SistemaMediMan.Models.ViewModels.ListDeporteViewModel>
 @{
-    ViewBag.Title = "Actividades";
+    ViewBag.Title = "Deportes";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>@ViewBag</h2>
 
 <main>
-    <!--Inicio container-->
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-10 col-sm-10">
+            <div class="offset-lg-1 offset-sm-1 col-lg-10 col-sm-10">
                 <table class="table table-light">
                     <thead class="thead-light">
                         <tr>
                             <th>#</th>
-                            <th>Actividad</th>
+                            <th>Deporte</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            @foreach (var actividades in Model)
-                            {
-                                <td>@actividades.Id</td>
-                                <td>@actividades.Nombre</td>
 
+                        <tr>
+                            @foreach (var deporte in Model)
+                            {
+                                <td>@deporte.Id</td>
+                                <td>@deporte.Nombre</td>
                                 <td>
                                     <a class="btn btn-warning" href="">Editar</a>
                                     <form action="" method="POST" style="display:inline">
@@ -36,7 +35,7 @@
                 </table>
             </div>
         </div>
-        <form action="@Url.Action("Create","Actividad")" method="get">
+        <form action="@Url.Action("Create","Deporte")" method="get">
             <div class="row">
                 <div class="offset-lg-10 col-lg-2 offset-sm-10 col-sm-2">
                     <button class="btn">Agregar</button>
@@ -45,5 +44,4 @@
         </form>
     </div> <!--fin container-->
 </main>
-
 

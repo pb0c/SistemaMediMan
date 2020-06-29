@@ -17,8 +17,7 @@ namespace SistemaMediMan.Models
         public int ID { get; set; }
         public int EMP_ID { get; set; }
         public int PAC_ID { get; set; }
-        public System.TimeSpan HORA { get; set; }
-        public System.DateTime FECHA { get; set; }
+        public System.DateTime FECHAHORA { get; set; }
         public int BOX { get; set; }
         public int SESION { get; set; }
     

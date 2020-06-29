@@ -12,8 +12,8 @@ namespace SistemaMediMan.Models.ViewModels
         public string Medico { get; set; }
         public string Tratamiento { get; set; }
         public string Diagnostico { get; set; }
-        private string Medicamento { get; set; }
+        public string Medicamento { get; set; }
         public string AntMorbido { get; set; }
-        public Paciente Paciente_id { get; set; }
+        public int Paciente_id { get; set; }
     }
 }

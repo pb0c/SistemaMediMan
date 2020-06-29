@@ -138,9 +138,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ActividadController.cs" />
-    <Compile Include="Controllers\ConsultaController.cs" />
+    <Compile Include="Controllers\ConsultController.cs" />
     <Compile Include="Controllers\DeporteController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
+    <Compile Include="Controllers\FichaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PacienteController.cs" />
     <Compile Include="Global.asax.cs">
@@ -270,11 +271,19 @@
     <Content Include="Views\Empleado\Create.cshtml" />
     <Content Include="Views\Paciente\Create.cshtml" />
     <Content Include="Views\Actividad\Index.cshtml" />
+    <Content Include="Views\Deporte\Create.cshtml" />
+    <Content Include="Views\Consult\Index.cshtml" />
+    <Content Include="Views\Consult\Create.cshtml" />
+    <Content Include="Views\Deporte\Index.cshtml" />
+    <Content Include="Views\Actividad\Create.cshtml" />
+    <Content Include="Views\Ficha\Create.cshtml" />
+    <Content Include="Views\Ficha\Delete.cshtml" />
+    <Content Include="Views\Ficha\Details.cshtml" />
+    <Content Include="Views\Ficha\Edit.cshtml" />
+    <Content Include="Views\Ficha\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Consulta\" />
-    <Folder Include="Views\Deporte\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

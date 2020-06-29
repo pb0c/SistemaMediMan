@@ -20,7 +20,7 @@ namespace SistemaMediMan.Models
 
         private void Init()
         {
-            
+            Id = 0;
             Nombre = string.Empty;
         }
     }

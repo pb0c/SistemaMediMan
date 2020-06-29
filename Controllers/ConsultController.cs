@@ -1,48 +1,51 @@
-﻿using System;
+﻿using SistemaMediMan.Models;
+using SistemaMediMan.Models.ViewModels;
+using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using SistemaMediMan.Models;
-using SistemaMediMan.Models.ViewModels;
 
 namespace SistemaMediMan.Controllers
 {
-    public class ActividadController : Controller
+    public class ConsultController : Controller
     {
-        // GET: Actividad
+        // GET: Consult
         public ActionResult Index()
         {
-            List<ListActividadViewModel> lista;
+            List<ListConsultaViewModel> lista;
             using (mediManEntities db = new mediManEntities())
             {
-                lista = (from d in db.ACTIVIDADES
-                         select new ListActividadViewModel
+                lista = (from d in db.CONSULTAS
+                         select new ListConsultaViewModel
                          {
-                             Id=d.ID,
-                             Nombre=d.ACTIVIDAD,
+                             Id = d.ID,
+                             FechaHora = d.FECHAHORA,
+                             Box = d.BOX,
+                             Sesion = d.SESION,
+                             Paciente_id = d.PAC_ID,
+                             Empleado_id = d.EMP_ID,
 
                          }).ToList();
             }
-                return View(lista);
+            return View(lista);
         }
 
-        // GET: Actividad/Details/5
+        // GET: Consult/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Actividad/Create
+        // GET: Consult/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Actividad/Create
+        // POST: Consult/Create
         [HttpPost]
-        public ActionResult Create(ListActividadViewModel model)
+        public ActionResult Create(ListConsultaViewModel model)
         {
             try
             {
@@ -50,11 +53,14 @@ namespace SistemaMediMan.Controllers
                 {
                     using (mediManEntities db = new mediManEntities())
                     {
-                        var act = new ACTIVIDADES();
-                        act.ACTIVIDAD = model.Nombre;
+                        var cons = new CONSULTAS();
+                        cons.FECHAHORA = model.FechaHora;
+                        cons.BOX = model.Box;
+                        cons.SESION = model.Sesion;
+                        cons.PAC_ID = model.Paciente_id;
+                        cons.EMP_ID = model.Empleado_id;
 
-
-                        db.ACTIVIDADES.Add(act);
+                        db.CONSULTAS.Add(cons);
                         db.SaveChanges();
                     }
                     return Redirect("Index/");
@@ -67,13 +73,13 @@ namespace SistemaMediMan.Controllers
             }
         }
 
-        // GET: Actividad/Edit/5
+        // GET: Consult/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Actividad/Edit/5
+        // POST: Consult/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -89,13 +95,13 @@ namespace SistemaMediMan.Controllers
             }
         }
 
-        // GET: Actividad/Delete/5
+        // GET: Consult/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Actividad/Delete/5
+        // POST: Consult/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

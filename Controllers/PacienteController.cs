@@ -37,6 +37,8 @@ namespace SistemaMediMan.Controllers
                              Numero=d.NUMCALLE,
                              Dpto = d.DPTO,
                              Comuna=d.COMUNA,
+                             Actividad_id=(int)d.ACT_ID,
+                             Deporte_id= (int)d.DEP_ID,
                              
 
                          }).ToList() ;
@@ -80,6 +82,8 @@ namespace SistemaMediMan.Controllers
                         pac.NUMCALLE = model.Numero;
                         pac.DPTO = model.Dpto;
                         pac.COMUNA = model.Comuna;
+                        pac.ACT_ID = model.Actividad_id;
+                        pac.DEP_ID = model.Deporte_id;
 
 
                         db.PACIENTES.Add(pac);

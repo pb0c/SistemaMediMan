@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ACTIVIDAD" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="CONSULTAS">
@@ -19,8 +19,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EMP_ID" Type="int" Nullable="false" />
           <Property Name="PAC_ID" Type="int" Nullable="false" />
-          <Property Name="HORA" Type="time" Precision="7" Nullable="false" />
-          <Property Name="FECHA" Type="date" Nullable="false" />
+          <Property Name="FECHAHORA" Type="datetime" Nullable="false" />
           <Property Name="BOX" Type="int" Nullable="false" />
           <Property Name="SESION" Type="int" Nullable="false" />
         </EntityType>
@@ -179,7 +178,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ACTIVIDAD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="PACIENTES" Relationship="Self.FK_RELATIONSHIP_5" FromRole="ACTIVIDADES" ToRole="PACIENTES" />
         </EntityType>
@@ -190,8 +189,7 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EMP_ID" Type="Int32" Nullable="false" />
           <Property Name="PAC_ID" Type="Int32" Nullable="false" />
-          <Property Name="HORA" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FECHAHORA" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="BOX" Type="Int32" Nullable="false" />
           <Property Name="SESION" Type="Int32" Nullable="false" />
           <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_RELATIONSHIP_4" FromRole="CONSULTAS" ToRole="EMPLEADOS" />
@@ -370,8 +368,7 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
                 <ScalarProperty Name="PAC_ID" ColumnName="PAC_ID" />
-                <ScalarProperty Name="HORA" ColumnName="HORA" />
-                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="FECHAHORA" ColumnName="FECHAHORA" />
                 <ScalarProperty Name="BOX" ColumnName="BOX" />
                 <ScalarProperty Name="SESION" ColumnName="SESION" />
               </MappingFragment>

@@ -19,8 +19,8 @@ namespace SistemaMediMan.Models
 		private string _calle;
 		private int _numCalle;
 		private string _comuna;
-		private Actividad _actividad;
-		private Deporte _deporte;
+		private int _actividad;
+		private int _deporte;
 
 		private string Rut { get; set; }
 		private string Nombre { get; set; }
@@ -33,8 +33,8 @@ namespace SistemaMediMan.Models
 		private string Calle { get; set; }
 		private int Num { get; set; }
 		private string Comuna { get; set; }
-		private Actividad Act { get; set; }
-		private Deporte Dep { get; set; }
+		private int Actividad_id { get; set; }
+		private int Deporte_id { get; set; }
 
 		public Paciente()
 		{
@@ -52,11 +52,11 @@ namespace SistemaMediMan.Models
 			Prev = string.Empty;
 			Calle = string.Empty;
 			Num = 0;
-			Act = Act;
-			Dep = Dep;
+			Actividad_id = 0;
+			Deporte_id = 0;
 		}
 
-		public Paciente(int id, string rut, string nombre, string apellidoP, string apellidoM, DateTime fdenac, int edad, string telefono, string prevision, string calle, int numCalle, string comuna, Actividad actividad, Deporte deporte)
+		public Paciente(int id, string rut, string nombre, string apellidoP, string apellidoM, DateTime fdenac, int edad, string telefono, string prevision, string calle, int numCalle, string comuna, int actividad, int deporte)
         {
 			this._id = id;
 			this._rut = rut;

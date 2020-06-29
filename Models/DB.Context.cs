@@ -31,9 +31,5 @@ namespace SistemaMediMan.Models
         public virtual DbSet<EMPLEADOS> EMPLEADOS { get; set; }
         public virtual DbSet<FICHAS> FICHAS { get; set; }
         public virtual DbSet<PACIENTES> PACIENTES { get; set; }
-
-        public System.Data.Entity.DbSet<SistemaMediMan.Models.ViewModels.ListPacienteViewModel> ListPacienteViewModels { get; set; }
-
-        public System.Data.Entity.DbSet<SistemaMediMan.Models.ViewModels.ListActividadViewModel> ListActividadViewModels { get; set; }
     }
 }

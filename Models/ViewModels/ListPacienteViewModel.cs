@@ -55,8 +55,8 @@ namespace SistemaMediMan.Models.ViewModels
 		[Display(Name = "Communa")]
 		public string Comuna { get; set; }
 		[Display(Name = "Actividad")]
-		public Actividad Act { get; set; }
+		public int Actividad_id { get; set; }
 		[Display(Name = "Deporte")]
-		public Deporte Dep { get; set; }
+		public int Deporte_id { get; set; }
 	}
 }

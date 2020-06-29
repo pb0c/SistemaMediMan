@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SistemaMediMan.Models;
+using SistemaMediMan.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +13,19 @@ namespace SistemaMediMan.Controllers
         // GET: Deporte
         public ActionResult Index()
         {
-            return View();
+            List<ListDeporteViewModel> lista;
+            using (mediManEntities db = new mediManEntities())
+            {
+                lista = (from d in db.DEPORTES
+                         select new ListDeporteViewModel
+                         {
+                             Id=d.ID,
+                             Nombre=d.DEPORTE,
+
+                         }).ToList();
+            }
+
+            return View(lista);
         }
 
         // GET: Deporte/Details/5
@@ -28,17 +42,28 @@ namespace SistemaMediMan.Controllers
 
         // POST: Deporte/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ListDeporteViewModel model)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+                    using (mediManEntities db = new mediManEntities())
+                    {
+                        var dep = new DEPORTES();
+                        dep.DEPORTE = model.Nombre;
 
-                return RedirectToAction("Index");
+
+                        db.DEPORTES.Add(dep);
+                        db.SaveChanges();
+                    }
+                    return Redirect("Index/");
+                }
+                return View(model);
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                throw new Exception(e.Message);
             }
         }
 
