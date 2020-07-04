@@ -1,10 +1,10 @@
-﻿@model List<SistemaMediMan.Models.ViewModels.ListConsultaViewModel>
+﻿@model IEnumerable<SistemaMediMan.Models.CONSULTAS>
 
 @{
     ViewBag.Title = "Consultas";
 }
 
-<h2>@ViewBag</h2>
+<h2>@ViewBag.Title</h2>
 <main>
     <div class="container-fluid">
         <div class="row">
@@ -26,17 +26,18 @@
                         <tr>
                             @foreach (var consulta in Model)
                             {
-                                <td>@consulta.Id</td>
-                                <td>@consulta.FechaHora</td>
-                                <td>@consulta.Box</td>
-                                <td>@consulta.Sesion</td>
-                                <td>@consulta.Paciente_id</td>
-                                <td>@consulta.Empleado_id</td>
+                                <td>@consulta.ID</td>
+                                <td>@consulta.FECHAHORA</td>
+                                <td>@consulta.BOX</td>
+                                <td>@consulta.SESION</td>
+                                <td>@consulta.PAC_ID</td>
+                                <td>@consulta.EMP_ID</td>
                                 <td>
                                     <a class="btn btn-warning" href="">Editar</a>
                                     <form action="" method="POST" style="display:inline">
                                         <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea eliminar el registro?');">Eliminar</button>
                                     </form>
+                                    
                                 </td>
                             }
                         </tr>
@@ -49,6 +50,7 @@
                 <div class="offset-lg-10 col-lg-2 offset-sm-10 col-sm-2">
                     <button class="btn">Nuevo Usuario</button>
                 </div>
+                <a class="btn btn-warning" href="@Url.Action("Calendario","Consult")">Editar</a>
             </div>
         </form>
     </div> <!--fin container-->

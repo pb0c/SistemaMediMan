@@ -1,18 +1,16 @@
-﻿@model List<SistemaMediMan.Models.ViewModels.ListPacienteViewModel>
-
-    <!--IEnumerable<SistemaMediMan.Models.PACIENTES>-->
+﻿@model IEnumerable<SistemaMediMan.Models.PACIENTES>
 @{
 
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Listado Pacientes";
 }
 
-<h2>@ViewBag.Title</h2>
     <main>
+        <h4><center>@ViewBag.Title</center></h4>
         <!--Inicio container-->
         <div class="container">
             <div class="row">
-                <div class="col-lg-10 col-sm-10">
+                <div class="col d-flex justify-content-center">
                     <table class="table table-light">
                         <thead class="thead-light">
                             <tr>
@@ -31,34 +29,39 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                @foreach (var pacientes in Model)
-                                {
-                                    <td>@pacientes.Id</td>
-                                    <td>@pacientes.Rut</td>
-                                    <td>@pacientes.Nombre @pacientes.ApellidoP @pacientes.ApellidoM</td>
-                                    <td>@pacientes.Fdenac</td>
-                                    <td>@pacientes.Edad</td>
-                                    <td>@pacientes.Sexo</td>
-                                    <td>@pacientes.Telefono</td>
-                                    <td>@pacientes.Prevision</td>
-                                    <td>@pacientes.Calle @pacientes.Numero @pacientes.Dpto. @pacientes.Comuna</td>
-                                    <td>@pacientes.Actividad_id</td>
-                                    <td>@pacientes.Deporte_id</td>
+                            @foreach (var pacientes in Model)
+                            {
+                                <tr>
+                                    <td>@pacientes.ID</td>
+                                    <td>@pacientes.RUT</td>
+                                    <td>@pacientes.NOMBRE @pacientes.APELLIDOP @pacientes.APELLIDOM</td>
+                                    <td>@pacientes.FDENAC.ToShortDateString()</td>
+                                    <td>@pacientes.EDAD</td>
+                                    <td>@{ 
+                                            if (pacientes.SEXO == false)
+                                            {
+                                                <span>Femenino</span>
+                                            }
+                                            else
+                                            {
+                                                <span>Masculino</span>
+                                            }
+                                        }
+                                    </td>
+                                    <td>@pacientes.TELEFONOP</td>
+                                    <td>@pacientes.PREVISION</td>
+                                    <td>@pacientes.CALLE @pacientes.NUMCALLE @pacientes.DPTO. @pacientes.COMUNA</td>
+                                    <td>@pacientes.ACT_ID</td>
+                                    <td>@pacientes.DEP_ID</td>
 
                                     <td>
-                                        <a class="btn btn-warning" href="">Editar</a>
-                                        <form action="" method="POST" style="display:inline">
-                                            <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea eliminar el registro?');">Eliminar</button>
-                                        </form>
-
-                                        <form action="" method="GET" style="display:inline">
-                                            <button class="btn " type="submit" onclick="">Ver Fichas</button>
-                                        </form>
+                                        @Html.ActionLink("Editar", "Edit", new { ID = pacientes.ID })|
+                                        @Html.ActionLink("Ver Ficha", "", new { ID = pacientes.ID })|
+                                        @Html.ActionLink("Eliminar", "Delete", new { ID = pacientes.ID })
 
                                     </td>
-                                }
-                            </tr>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -66,7 +69,7 @@
             <form action="@Url.Action("Create","Paciente")" method="get">
                 <div class="row">
                     <div class="offset-lg-10 col-lg-2 offset-sm-10 col-sm-2">
-                        <button class="btn">Nuevo Paciente</button>
+                        <button class="btn" style="background-color:#134C89; color:azure">Nuevo Paciente</button>
                     </div>
                 </div>
             </form>

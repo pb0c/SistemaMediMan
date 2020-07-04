@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.SqlTypes;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Web;
 using SistemaMediMan.Models;
 
@@ -19,16 +20,16 @@ namespace SistemaMediMan.Models.ViewModels
 		[RegularExpression("^[a-zA-z]+$",ErrorMessage ="Solo debe contener letras")]
 		public string Nombre { get; set; }
 		[Required]
-		[Display(Name ="Apellido Paterno")]
+		[Display(Name ="ApellidoPaterno")]
 		[RegularExpression("^[a-zA-z]+$", ErrorMessage = "Solo debe contener letras")]
 		public string ApellidoP { get; set; }
 		
-		[Display(Name = "Apellido Materno")]
+		[Display(Name = "ApellidoMaterno")]
 		[RegularExpression("^[a-zA-z]+$", ErrorMessage = "Solo debe contener letras")]
 		public string ApellidoM { get; set; }
 		[Required]
 		[DataType(DataType.Date)]
-		[Display(Name = "Fecha de Nacimiento")]
+		[Display(Name = "FechadeNacimiento")]
 		public DateTime Fdenac { get; set; }
 		[Required]
 		[Display(Name = "Edad")]
@@ -45,10 +46,10 @@ namespace SistemaMediMan.Models.ViewModels
 		[Display(Name = "Previsión")]
 		public string Prevision { get; set; }
 		[Required]
-		[Display(Name = "Nombre Calle")]
+		[Display(Name = "NombreCalle")]
 		public string Calle { get; set; }
 		[Required]
-		[Display(Name = "Número Calle")]
+		[Display(Name = "NúmeroCalle")]
 		public int Numero { get; set; }
 		public string Dpto { get; set; }
 		[Required]
@@ -59,4 +60,5 @@ namespace SistemaMediMan.Models.ViewModels
 		[Display(Name = "Deporte")]
 		public int Deporte_id { get; set; }
 	}
+
 }

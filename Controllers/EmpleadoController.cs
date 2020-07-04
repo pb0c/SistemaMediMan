@@ -13,8 +13,19 @@ namespace SistemaMediMan.Controllers
         // GET: Empleado
         public ActionResult Index()
         {
-            List<ListEmpleadoViewModel> lista;
-            using (mediManEntities db = new mediManEntities())
+            try
+            {
+                using (mediManContext db = new mediManContext())
+                {
+                    return View(db.EMPLEADOS.ToList());
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            /*List<ListEmpleadoViewModel> lista;
+            using (mediManContext db = new mediManContext())
             {
                 lista = (from d in db.EMPLEADOS
                          select new ListEmpleadoViewModel
@@ -31,7 +42,7 @@ namespace SistemaMediMan.Controllers
 
                          }).ToList();
             }
-            return View(lista);
+            return View(lista);*/
         }
 
         // GET: Deporte/Details/5
@@ -54,7 +65,7 @@ namespace SistemaMediMan.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (mediManEntities db = new mediManEntities())
+                    using (mediManContext db = new mediManContext())
                     {
                         var emp = new EMPLEADOS();
                         emp.RUT = model.Rut;

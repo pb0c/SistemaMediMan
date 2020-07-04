@@ -13,10 +13,10 @@ namespace SistemaMediMan.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class mediManEntities : DbContext
+    public partial class mediManContext : DbContext
     {
-        public mediManEntities()
-            : base("name=mediManEntities")
+        public mediManContext()
+            : base("name=mediManContext")
         {
         }
     

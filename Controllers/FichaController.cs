@@ -13,13 +13,24 @@ namespace SistemaMediMan.Controllers
 {
     public class FichaController : Controller
     {
-        private mediManEntities db = new mediManEntities();
+        private mediManContext db = new mediManContext();
 
         // GET: Ficha
         public ActionResult Index()
         {
-            List<ListFichaViewModel> lista;
-            using (mediManEntities db = new mediManEntities())
+            try
+            {
+                using (mediManContext db = new mediManContext())
+                {
+                    return View(db.FICHAS.ToList());
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            /*List<ListFichaViewModel> lista;
+            using (mediManContext db = new mediManContext())
             {
                 lista = (from d in db.FICHAS
                          select new ListFichaViewModel
@@ -34,7 +45,7 @@ namespace SistemaMediMan.Controllers
 
                          }).ToList();
             }
-            return View(lista);
+            return View(lista);*/
         }
 
         // GET: Ficha/Details/5
@@ -61,7 +72,7 @@ namespace SistemaMediMan.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (mediManEntities db = new mediManEntities())
+                    using (mediManContext db = new mediManContext())
                     {
                         var fi = new FICHAS();
                         fi.MEDICO = model.Medico;

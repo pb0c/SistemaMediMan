@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using Antlr.Runtime.Misc;
+using System.Web.Mvc;
 
 namespace SistemaMediMan.Controllers
 {
@@ -6,10 +7,11 @@ namespace SistemaMediMan.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title="LOGIN";
+            
             return View();
         }
 
+        
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

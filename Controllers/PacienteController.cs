@@ -14,10 +14,18 @@ namespace SistemaMediMan.Controllers
         // GET: Paciente
         public ActionResult Index()
         {
-           /* mediManEntities db = new mediManEntities();
-            List<PACIENTES> lista = db.PACIENTES.ToList(); */
-
-            List<ListPacienteViewModel> lista;
+            try
+            {
+                using (mediManContext db = new mediManContext())
+                {
+                    return View(db.PACIENTES.ToList());
+                }
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+            /*List<ListPacienteViewModel> lista;
             using(mediManEntities db = new mediManEntities())
             {
                 lista = (from d in db.PACIENTES
@@ -37,13 +45,10 @@ namespace SistemaMediMan.Controllers
                              Numero=d.NUMCALLE,
                              Dpto = d.DPTO,
                              Comuna=d.COMUNA,
-                             Actividad_id=(int)d.ACT_ID,
-                             Deporte_id= (int)d.DEP_ID,
-                             
 
                          }).ToList() ;
             }
-            return View(lista);
+            return View(lista);*/
         }
 
         // GET: Paciente/Details/5
@@ -67,7 +72,7 @@ namespace SistemaMediMan.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (mediManEntities db = new mediManEntities())
+                    using (mediManContext db = new mediManContext())
                     {
                         var pac = new PACIENTES();
                         pac.RUT = model.Rut;
@@ -90,12 +95,14 @@ namespace SistemaMediMan.Controllers
                         db.SaveChanges();
                     }
                     return Redirect("Index/");
+
                 }
                 return View(model);
             }
             catch(Exception e)
             {
-                throw new Exception(e.Message);
+                ModelState.AddModelError("", "Error de registro " + e.Message);
+                return View();
             }
             
         }
@@ -103,21 +110,45 @@ namespace SistemaMediMan.Controllers
         // GET: Paciente/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            using (var db = new mediManContext())
+            {
+                db.PACIENTES.Find(id);
+                return View();
+            }
+            
         }
 
         // POST: Paciente/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(PACIENTES paciente)
         {
             try
             {
-                // TODO: Add update logic here
+                using (var db = new mediManContext())
+                {
+                    PACIENTES pac = db.PACIENTES.Find(paciente.ID);
+                    pac.NOMBRE = paciente.NOMBRE;
+                    pac.APELLIDOP = paciente.APELLIDOP;
+                    pac.APELLIDOM = paciente.APELLIDOM;
+                    pac.EDAD = paciente.EDAD;
+                    pac.SEXO = paciente.SEXO;
+                    pac.TELEFONOP = paciente.TELEFONOP;
+                    pac.PREVISION = paciente.PREVISION;
+                    pac.CALLE = paciente.CALLE;
+                    pac.NUMCALLE = paciente.NUMCALLE;
+                    pac.DPTO = paciente.DPTO;
+                    pac.COMUNA = paciente.COMUNA;
+                    pac.ACT_ID = paciente.ACT_ID;
+                    pac.DEP_ID = paciente.DEP_ID;
 
-                return RedirectToAction("Index");
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
             }
-            catch
+            catch(Exception e)
             {
+                ModelState.AddModelError("", "Error al actualizar " + e.Message);
                 return View();
             }
         }

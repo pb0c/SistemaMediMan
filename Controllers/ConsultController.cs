@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http.Controllers;
 using System.Web.Mvc;
 
 namespace SistemaMediMan.Controllers
@@ -13,8 +14,19 @@ namespace SistemaMediMan.Controllers
         // GET: Consult
         public ActionResult Index()
         {
-            List<ListConsultaViewModel> lista;
-            using (mediManEntities db = new mediManEntities())
+            try
+            {
+                using (mediManContext db = new mediManContext())
+                {
+                    return View(db.CONSULTAS.ToList());
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            /*List<ListConsultaViewModel> lista;
+            using (mediManContext db = new mediManContext())
             {
                 lista = (from d in db.CONSULTAS
                          select new ListConsultaViewModel
@@ -28,8 +40,10 @@ namespace SistemaMediMan.Controllers
 
                          }).ToList();
             }
-            return View(lista);
+            return View(lista);*/
         }
+
+        
 
         // GET: Consult/Details/5
         public ActionResult Details(int id)
@@ -51,7 +65,7 @@ namespace SistemaMediMan.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (mediManEntities db = new mediManEntities())
+                    using (mediManContext db = new mediManContext())
                     {
                         var cons = new CONSULTAS();
                         cons.FECHAHORA = model.FechaHora;
@@ -116,5 +130,32 @@ namespace SistemaMediMan.Controllers
                 return View();
             }
         }
+
+        public ActionResult Calendario()
+        {
+            return View(new ListConsultaViewModel());
+        }
+
+        public JsonResult GetEvents(DateTime start)
+        {
+            var viewModel = new ListConsultaViewModel();
+            var events = new List<ListConsultaViewModel>();
+            start = DateTime.Today.AddDays(-14);
+            
+            events.Add(new ListConsultaViewModel()
+                {
+                    Box = viewModel.Box,
+                    FechaHora = viewModel.FechaHora,
+                    Sesion = viewModel.Sesion,
+                    Paciente_id = viewModel.Paciente_id,
+                    Empleado_id = viewModel.Empleado_id,
+                });
+
+                start = start.AddDays(7);
+
+            return Json(events.ToArray(), JsonRequestBehavior.AllowGet);
+        }
+
+
     }
 }

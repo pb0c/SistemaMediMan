@@ -15,7 +15,7 @@ namespace SistemaMediMan.Controllers
         public ActionResult Index()
         {
             List<ListActividadViewModel> lista;
-            using (mediManEntities db = new mediManEntities())
+            using (mediManContext db = new mediManContext())
             {
                 lista = (from d in db.ACTIVIDADES
                          select new ListActividadViewModel
@@ -48,7 +48,7 @@ namespace SistemaMediMan.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (mediManEntities db = new mediManEntities())
+                    using (mediManContext db = new mediManContext())
                     {
                         var act = new ACTIVIDADES();
                         act.ACTIVIDAD = model.Nombre;

@@ -1,56 +1,58 @@
-﻿@model List<SistemaMediMan.Models.ViewModels.ListEmpleadoViewModel>
+﻿@model IEnumerable<SistemaMediMan.Models.EMPLEADOS>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Listado Empleados";
 }
 
-<h2>@ViewBag.Title</h2>
-<main>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="offset-lg-1 offset-sm-1 col-lg-10 col-sm-10">
-                <table class="table table-light">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>#</th>
-                            <th>Rut</th>
-                            <th>Nombre</th>
-                            <th>Telefono</th>
-                            <th>Rol</th>
-                            <th>Usuario</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                       
-                        <tr>
-                            @foreach (var empleados in Model) 
-                            { 
-                            <td>@empleados.Id</td>
-                            <td>@empleados.Rut</td>
-                            <td>@empleados.Nombre @empleados.ApellidoP @empleados.ApellidoM</td>
-                            <td>@empleados.Telefono</td>
-                            <td>@empleados.Rol</td>
-                            <td>@empleados.User</td>
-                            <td>
-                                <a class="btn btn-warning" href="">Editar</a>
-                                <form action="" method="POST" style="display:inline">
-                                    <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea eliminar el registro?');">Eliminar</button>
-                                </form>
-                            </td>
-                            }
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <form action="@Url.Action("Create","Empleado")" method="get">
+
+    <main>
+        <h4><center>@ViewBag.Title</center></h4>
+        <hr />
+        <div class="container-fluid">
             <div class="row">
-                <div class="offset-lg-10 col-lg-2 offset-sm-10 col-sm-2">
-                    <button class="btn">Nuevo Usuario</button>
+                <div class="col d-flex justify-content-center">
+                    <table class="table table-light">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Rut</th>
+                                <th>Nombre</th>
+                                <th>Teléfono</th>
+                                <th>Rol</th>
+                                <th>Usuario</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var empleados in Model)
+                            {
+                                <tr>
+                                    <td>@empleados.ID</td>
+                                    <td>@empleados.RUT</td>
+                                    <td>@empleados.NOMBRE @empleados.APELLIDOP @empleados.APELLIDOM</td>
+                                    <td>@empleados.TELEFONO</td>
+                                    <td>@empleados.ROL</td>
+                                    <td>@empleados.USER</td>
+                                    <td>
+                                        <a class="btn btn-warning p-1" href="">Editar</a>
+                                        <form action="" method="POST" style="display:inline">
+                                            <button class="btn btn-danger p-1" type="submit" onclick="return confirm('¿Desea eliminar el registro?');">Eliminar</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </form>
-    </div> <!--fin container-->
-</main>
+            <form action="@Url.Action("Create","Empleado")" method="get">
+                <div class="row">
+                    <div class="offset-lg-10 col-lg-2 offset-sm-10 col-sm-2">
+                        <button class="btn" style="background-color:#134C89; color:azure">Nuevo Usuario</button>
+                    </div>
+                </div>
+            </form>
+        </div> <!--fin container-->
+    </main>
 

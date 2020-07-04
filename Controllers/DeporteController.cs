@@ -14,7 +14,7 @@ namespace SistemaMediMan.Controllers
         public ActionResult Index()
         {
             List<ListDeporteViewModel> lista;
-            using (mediManEntities db = new mediManEntities())
+            using (mediManContext db = new mediManContext())
             {
                 lista = (from d in db.DEPORTES
                          select new ListDeporteViewModel
@@ -48,7 +48,7 @@ namespace SistemaMediMan.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    using (mediManEntities db = new mediManEntities())
+                    using (mediManContext db = new mediManContext())
                     {
                         var dep = new DEPORTES();
                         dep.DEPORTE = model.Nombre;

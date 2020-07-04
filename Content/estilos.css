@@ -12,7 +12,6 @@ body{
 
  header{
 	 background-color: #196dc8;
-
  }
 
  .fixed-top {
@@ -42,13 +41,10 @@ body{
 	margin-top: 25px;
 }
 .navbar button{
-	height: 20px;
-	width: 20px;
-	border-radius: 5px;
+
 	border: 0;
 	font-size: 15px;
-	margin-left: 5px;
-	margin-top: 30px;
+
 }
 
  .navbar label{
@@ -77,7 +73,6 @@ footer{
 	 position: absolute;
 	 bottom: 0;
 	 width: 100%;
-
  }
 
  main{
