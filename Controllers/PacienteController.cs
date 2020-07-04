@@ -65,7 +65,7 @@ namespace SistemaMediMan.Controllers
 
         // POST: Paciente/Create
         [HttpPost]
-        public ActionResult Create(ListPacienteViewModel model)
+        public ActionResult Create(PACIENTES model)
 
         {
             try
@@ -75,20 +75,20 @@ namespace SistemaMediMan.Controllers
                     using (mediManContext db = new mediManContext())
                     {
                         var pac = new PACIENTES();
-                        pac.RUT = model.Rut;
-                        pac.NOMBRE = model.Nombre;
-                        pac.APELLIDOP = model.ApellidoP;
-                        pac.APELLIDOM = model.ApellidoM;
-                        pac.EDAD = model.Edad;
-                        pac.SEXO = model.Sexo;
-                        pac.TELEFONOP = model.Telefono;
-                        pac.PREVISION = model.Prevision;
-                        pac.CALLE = model.Calle;
-                        pac.NUMCALLE = model.Numero;
-                        pac.DPTO = model.Dpto;
-                        pac.COMUNA = model.Comuna;
-                        pac.ACT_ID = model.Actividad_id;
-                        pac.DEP_ID = model.Deporte_id;
+                        pac.RUT = model.RUT;
+                        pac.NOMBRE = model.NOMBRE;
+                        pac.APELLIDOP = model.APELLIDOP;
+                        pac.APELLIDOM = model.APELLIDOM;
+                        pac.EDAD = model.EDAD;
+                        pac.SEXO = model.SEXO;
+                        pac.TELEFONOP = model.TELEFONOP;
+                        pac.PREVISION = model.PREVISION;
+                        pac.CALLE = model.CALLE;
+                        pac.NUMCALLE = model.NUMCALLE;
+                        pac.DPTO = model.DPTO;
+                        pac.COMUNA = model.COMUNA;
+                        pac.ACT_ID = model.ACT_ID;
+                        pac.DEP_ID = model.DEP_ID;
 
 
                         db.PACIENTES.Add(pac);
@@ -110,36 +110,36 @@ namespace SistemaMediMan.Controllers
         // GET: Paciente/Edit/5
         public ActionResult Edit(int id)
         {
-            using (var db = new mediManContext())
+            using (mediManContext db = new mediManContext())
             {
-                db.PACIENTES.Find(id);
-                return View();
+                PACIENTES p = db.PACIENTES.Find(id);
+                return View(p);
             }
             
         }
 
         // POST: Paciente/Edit/5
         [HttpPost]
-        public ActionResult Edit(PACIENTES paciente)
+        public ActionResult Edit(PACIENTES model)
         {
             try
             {
-                using (var db = new mediManContext())
+                using (mediManContext db = new mediManContext())
                 {
-                    PACIENTES pac = db.PACIENTES.Find(paciente.ID);
-                    pac.NOMBRE = paciente.NOMBRE;
-                    pac.APELLIDOP = paciente.APELLIDOP;
-                    pac.APELLIDOM = paciente.APELLIDOM;
-                    pac.EDAD = paciente.EDAD;
-                    pac.SEXO = paciente.SEXO;
-                    pac.TELEFONOP = paciente.TELEFONOP;
-                    pac.PREVISION = paciente.PREVISION;
-                    pac.CALLE = paciente.CALLE;
-                    pac.NUMCALLE = paciente.NUMCALLE;
-                    pac.DPTO = paciente.DPTO;
-                    pac.COMUNA = paciente.COMUNA;
-                    pac.ACT_ID = paciente.ACT_ID;
-                    pac.DEP_ID = paciente.DEP_ID;
+                    PACIENTES pac = db.PACIENTES.Find(model.ID);
+                    pac.NOMBRE = model.NOMBRE;
+                    pac.APELLIDOP = model.APELLIDOP;
+                    pac.APELLIDOM = model.APELLIDOM;
+                    pac.EDAD = model.EDAD;
+                    pac.SEXO = model.SEXO;
+                    pac.TELEFONOP = model.TELEFONOP;
+                    pac.PREVISION = model.PREVISION;
+                    pac.CALLE = model.CALLE;
+                    pac.NUMCALLE = model.NUMCALLE;
+                    pac.DPTO = model.DPTO;
+                    pac.COMUNA = model.COMUNA;
+                    pac.ACT_ID = model.ACT_ID;
+                    pac.DEP_ID = model.DEP_ID;
 
                     db.SaveChanges();
 
@@ -156,7 +156,14 @@ namespace SistemaMediMan.Controllers
         // GET: Paciente/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            using (mediManContext db = new mediManContext())
+            {
+                PACIENTES p = db.PACIENTES.Find(id);
+                db.PACIENTES.Remove(p);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
         }
 
         // POST: Paciente/Delete/5

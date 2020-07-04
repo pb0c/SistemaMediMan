@@ -74,17 +74,15 @@
                             Value = ""
                         });
                         listSexo.Add(new SelectListItem
-                        { 
+                        {
                             Text = "Femenino",
-                            Value = "0"
+                            Value = "false"
                         });
                         listSexo.Add(new SelectListItem
                         {
                             Text = "Masculino",
-                            Value = "1"
-                        }
-
-                        );
+                            Value ="true"
+                        });
 
                     }
                     @Html.DropDownList("Sexo", listSexo, new { @class = "form-control" })
