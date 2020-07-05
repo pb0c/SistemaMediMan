@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="29bf26f5b3cc409e83c33e7136148aa9" Name="Diagram1">
+      <Diagram DiagramId="be824987b6734839ba2af0cf352f7365" Name="Diagram1">
         <EntityTypeShape EntityType="mediManModel.ACTIVIDADES" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mediManModel.CONSULTAS" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mediManModel.CONSULTAS" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="mediManModel.DEPORTES" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="mediManModel.EMPLEADOS" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="mediManModel.FICHAS" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="mediManModel.FICHAS" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mediManModel.PACIENTES" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <AssociationConnector Association="mediManModel.FK_RELATIONSHIP_5" ManuallyRouted="false" />
         <AssociationConnector Association="mediManModel.FK_RELATIONSHIP_4" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="mediManModel.PACIENTES" Width="1.5" PointX="3" PointY="0.75" />
-        <AssociationConnector Association="mediManModel.FK_RELATIONSHIP_5" />
-        <AssociationConnector Association="mediManModel.FK_RELATIONSHIP_7" />
-        <AssociationConnector Association="mediManModel.FK_RELATIONSHIP_6" />
-        <AssociationConnector Association="mediManModel.FK_RELATIONSHIP_8" />
-        </Diagram>
+        <AssociationConnector Association="mediManModel.FK_RELATIONSHIP_7" ManuallyRouted="false" />
+        <AssociationConnector Association="mediManModel.FK_RELATIONSHIP_6" ManuallyRouted="false" />
+        <AssociationConnector Association="mediManModel.FK_RELATIONSHIP_8" ManuallyRouted="false" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

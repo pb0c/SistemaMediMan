@@ -59,7 +59,7 @@ namespace SistemaMediMan.Controllers
 
         // POST: Deporte/Create
         [HttpPost]
-        public ActionResult Create(ListEmpleadoViewModel model)
+        public ActionResult Create(EMPLEADOS model)
         {
             try
             {
@@ -68,48 +68,68 @@ namespace SistemaMediMan.Controllers
                     using (mediManContext db = new mediManContext())
                     {
                         var emp = new EMPLEADOS();
-                        emp.RUT = model.Rut;
-                        emp.NOMBRE = model.Nombre;
-                        emp.APELLIDOP = model.ApellidoP;
-                        emp.APELLIDOM = model.ApellidoM;
-                        emp.TELEFONO = model.Telefono;
-                        emp.ROL = model.Rol;
-                        emp.USER = model.User;
-                        emp.PASS = model.Pass;
+                        emp.RUT = model.RUT;
+                        emp.NOMBRE = model.NOMBRE;
+                        emp.APELLIDOP = model.APELLIDOP;
+                        emp.APELLIDOM = model.APELLIDOM;
+                        emp.ROL = model.ROL;
+                        emp.TELEFONO = model.TELEFONO;
+                        emp.USER = model.USER;
+                        emp.PASS = model.PASS;
 
                         db.EMPLEADOS.Add(emp);
                         db.SaveChanges();
                     }
-                    return RedirectToAction("/");
+                    return Redirect("Index/");
                 }
                 return View(model);
                 
             }
             catch(Exception e)
             {
-                throw new Exception(e.Message);
-                
+                ModelState.AddModelError("", "Error de registro " + e.Message);
+                return View();
+
             }
         }
 
         // GET: Deporte/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            using (mediManContext db = new mediManContext())
+            {
+                EMPLEADOS e = db.EMPLEADOS.Find(id);
+                return View(e);
+            }
         }
 
         // POST: Deporte/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(EMPLEADOS model)
         {
             try
             {
-                // TODO: Add update logic here
+                using (mediManContext db = new mediManContext())
+                {
+                    EMPLEADOS emp = db.EMPLEADOS.Find(model.ID);
+                    emp.RUT = model.RUT;
+                    emp.NOMBRE = model.NOMBRE;
+                    emp.APELLIDOP = model.APELLIDOP;
+                    emp.APELLIDOM = model.APELLIDOM;
+                    emp.ROL = model.ROL;
+                    emp.TELEFONO = model.TELEFONO;
+                    emp.USER = model.USER;
+                    emp.PASS = model.PASS;
+                    
 
-                return RedirectToAction("Index");
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
             }
-            catch
+            catch (Exception e)
             {
+                ModelState.AddModelError("", "Error al actualizar " + e.Message);
                 return View();
             }
         }
@@ -117,7 +137,14 @@ namespace SistemaMediMan.Controllers
         // GET: Deporte/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            using (mediManContext db = new mediManContext())
+            {
+                EMPLEADOS emp = db.EMPLEADOS.Find(id);
+                db.EMPLEADOS.Remove(emp);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
         }
 
         // POST: Deporte/Delete/5
@@ -135,6 +162,8 @@ namespace SistemaMediMan.Controllers
                 return View();
             }
         }
+
+        //Queda pendiente verificación de contraseña (crear y editar)
     }
 
 }

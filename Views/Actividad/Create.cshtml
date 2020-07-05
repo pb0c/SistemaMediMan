@@ -1,34 +1,34 @@
-﻿@model SistemaMediMan.Models.ViewModels.ListActividadViewModel
-
+﻿@model SistemaMediMan.Models.ACTIVIDADES
 @{
     ViewBag.Title = "Nueva Actividad";
 }
 
-<h2>@ViewBag</h2>
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    <main>
+        <div class="form-horizontal">
+            <h4>@ViewBag.Title</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ACTIVIDAD, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ACTIVIDAD, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ACTIVIDAD, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-    <div class="form-horizontal">
-        <h4>ListDeporteViewModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+                <div class="form-group form-group col-lg-3 col-sm-3 mt-1">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Agregar" class="btn" style="background-color:#134C89; color:azure" />
+                    </div>
+                </div>
+            </div><!--fin row-->
         </div>
-    </div>
+    </main>
 }
 
 <div>

@@ -14,7 +14,6 @@
                     <table class="table table-light">
                         <thead class="thead-light">
                             <tr>
-                                <th>#</th>
                                 <th>Rut</th>
                                 <th>Nombre</th>
                                 <th>Fecha de Nacimiento</th>
@@ -32,7 +31,6 @@
                             @foreach (var pacientes in Model)
                             {
                                 <tr>
-                                    <td>@pacientes.ID</td>
                                     <td>@pacientes.RUT</td>
                                     <td>@pacientes.NOMBRE @pacientes.APELLIDOP @pacientes.APELLIDOM</td>
                                     <td>@pacientes.FDENAC.ToShortDateString()</td>
@@ -51,8 +49,8 @@
                                     <td>@pacientes.TELEFONOP</td>
                                     <td>@pacientes.PREVISION</td>
                                     <td>@pacientes.CALLE @pacientes.NUMCALLE @pacientes.DPTO. @pacientes.COMUNA</td>
-                                    <td>@pacientes.ACT_ID</td>
-                                    <td>@pacientes.DEP_ID</td>
+                                    <td>@SistemaMediMan.Controllers.PacienteController.NomAct(pacientes.ACT_ID)</td>
+                                    <td>@SistemaMediMan.Controllers.PacienteController.NomAct(pacientes.DEP_ID)</td>
 
                                     <td>
                                         @Html.ActionLink("Editar", "Edit", new { ID = pacientes.ID })|

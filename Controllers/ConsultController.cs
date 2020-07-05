@@ -59,7 +59,7 @@ namespace SistemaMediMan.Controllers
 
         // POST: Consult/Create
         [HttpPost]
-        public ActionResult Create(ListConsultaViewModel model)
+        public ActionResult Create(CONSULTAS model)
         {
             try
             {
@@ -68,11 +68,12 @@ namespace SistemaMediMan.Controllers
                     using (mediManContext db = new mediManContext())
                     {
                         var cons = new CONSULTAS();
-                        cons.FECHAHORA = model.FechaHora;
-                        cons.BOX = model.Box;
-                        cons.SESION = model.Sesion;
-                        cons.PAC_ID = model.Paciente_id;
-                        cons.EMP_ID = model.Empleado_id;
+                        cons.FECHA = model.FECHA;
+                        cons.HORA = model.HORA;
+                        cons.BOX = model.BOX;
+                        cons.SESION = model.SESION;
+                        cons.PAC_ID = model.PAC_ID;
+                        cons.EMP_ID = model.EMP_ID;
 
                         db.CONSULTAS.Add(cons);
                         db.SaveChanges();

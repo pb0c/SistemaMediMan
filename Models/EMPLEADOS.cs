@@ -11,7 +11,9 @@ namespace SistemaMediMan.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class EMPLEADOS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,13 +23,36 @@ namespace SistemaMediMan.Models
         }
     
         public int ID { get; set; }
+        [Required]
+        [DisplayName("Rut")]
         public string RUT { get; set; }
+        [Required]
+        [DisplayName("Nombre")]
+        [RegularExpression("[a-zA-ZñÑáéíóúÁÉÍÓÚ]+", ErrorMessage = "Este campo solo admite letras")]
         public string NOMBRE { get; set; }
+        [Required]
+        [DisplayName("Apellido")]
+        [RegularExpression("[a-zA-ZñÑáéíóúÁÉÍÓÚ]+", ErrorMessage = "Este campo solo admite letras")]
         public string APELLIDOP { get; set; }
+        [Required]
+        [DisplayName("Apellido")]
+        [RegularExpression("[a-zA-ZñÑáéíóúÁÉÍÓÚ]+", ErrorMessage = "Este campo solo admite letras")]
         public string APELLIDOM { get; set; }
+        [Required]
+        [DisplayName("Rol")]
         public string ROL { get; set; }
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        [DisplayName("Télefono")]
+        [RegularExpression(@"^\(?([9]{1})\)?[-. ]?([0-9]{4})?([0-9]{4})$", ErrorMessage = "Formato inválido")]
         public string TELEFONO { get; set; }
+        [Required]
+        [DisplayName("Contraseña")]
+        [DataType(DataType.Password)]
         public string PASS { get; set; }
+        [Required]
+        [DisplayName("Usuario")]
+        [RegularExpression("[a-zA-ZñÑáéíóúÁÉÍÓÚ{3}]+?([0-9]{3})$", ErrorMessage = "Formato erróneo")]
         public string USER { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

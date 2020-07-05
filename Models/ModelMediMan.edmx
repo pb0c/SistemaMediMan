@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="mediManModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="mediManModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ACTIVIDADES">
           <Key>
             <PropertyRef Name="ID" />
@@ -19,7 +19,8 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EMP_ID" Type="int" Nullable="false" />
           <Property Name="PAC_ID" Type="int" Nullable="false" />
-          <Property Name="FECHAHORA" Type="datetime" Nullable="false" />
+          <Property Name="HORA" Type="time" Precision="7" Nullable="false" />
+          <Property Name="FECHA" Type="date" Nullable="false" />
           <Property Name="BOX" Type="int" Nullable="false" />
           <Property Name="SESION" Type="int" Nullable="false" />
         </EntityType>
@@ -52,7 +53,7 @@
           <Property Name="PAC_ID" Type="int" Nullable="false" />
           <Property Name="MEDICO" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="TRATAMIENTO" Type="varchar" MaxLength="1024" Nullable="false" />
-          <Property Name="MEDICAMENTO" Type="varchar" MaxLength="1024" />
+          <Property Name="MEDICAMENTO" Type="varchar" MaxLength="1024" Nullable="false" />
           <Property Name="DIAGNOSTICO" Type="varchar" MaxLength="1024" Nullable="false" />
           <Property Name="ANTMORBIDO" Type="varchar" MaxLength="1024" Nullable="false" />
         </EntityType>
@@ -61,8 +62,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DEP_ID" Type="int" />
-          <Property Name="ACT_ID" Type="int" />
+          <Property Name="DEP_ID" Type="int" Nullable="false" />
+          <Property Name="ACT_ID" Type="int" Nullable="false" />
           <Property Name="RUT" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="NOMBRE" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="APELLIDOP" Type="varchar" MaxLength="15" Nullable="false" />
@@ -90,7 +91,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RELATIONSHIP_5">
-          <End Role="ACTIVIDADES" Type="Self.ACTIVIDADES" Multiplicity="0..1" />
+          <End Role="ACTIVIDADES" Type="Self.ACTIVIDADES" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="PACIENTES" Type="Self.PACIENTES" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ACTIVIDADES">
@@ -102,7 +105,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RELATIONSHIP_6">
-          <End Role="DEPORTES" Type="Self.DEPORTES" Multiplicity="0..1" />
+          <End Role="DEPORTES" Type="Self.DEPORTES" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="PACIENTES" Type="Self.PACIENTES" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DEPORTES">
@@ -169,7 +174,8 @@
             <End Role="FICHAS" EntitySet="FICHAS" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="mediManModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -179,7 +185,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ACTIVIDAD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="PACIENTES" Relationship="mediManModel.FK_RELATIONSHIP_5" FromRole="ACTIVIDADES" ToRole="PACIENTES" />
+          <NavigationProperty Name="PACIENTES" Relationship="Self.FK_RELATIONSHIP_5" FromRole="ACTIVIDADES" ToRole="PACIENTES" />
         </EntityType>
         <EntityType Name="CONSULTAS">
           <Key>
@@ -188,11 +194,12 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EMP_ID" Type="Int32" Nullable="false" />
           <Property Name="PAC_ID" Type="Int32" Nullable="false" />
-          <Property Name="FECHAHORA" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HORA" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="BOX" Type="Int32" Nullable="false" />
           <Property Name="SESION" Type="Int32" Nullable="false" />
           <NavigationProperty Name="EMPLEADOS" Relationship="Self.FK_RELATIONSHIP_4" FromRole="CONSULTAS" ToRole="EMPLEADOS" />
-          <NavigationProperty Name="PACIENTES" Relationship="mediManModel.FK_RELATIONSHIP_7" FromRole="CONSULTAS" ToRole="PACIENTES" />
+          <NavigationProperty Name="PACIENTES" Relationship="Self.FK_RELATIONSHIP_7" FromRole="CONSULTAS" ToRole="PACIENTES" />
         </EntityType>
         <EntityType Name="DEPORTES">
           <Key>
@@ -200,7 +207,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DEPORTE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="PACIENTES" Relationship="mediManModel.FK_RELATIONSHIP_6" FromRole="DEPORTES" ToRole="PACIENTES" />
+          <NavigationProperty Name="PACIENTES" Relationship="Self.FK_RELATIONSHIP_6" FromRole="DEPORTES" ToRole="PACIENTES" />
         </EntityType>
         <EntityType Name="EMPLEADOS">
           <Key>
@@ -225,11 +232,50 @@
           <Property Name="PAC_ID" Type="Int32" Nullable="false" />
           <Property Name="MEDICO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TRATAMIENTO" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MEDICAMENTO" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="MEDICAMENTO" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DIAGNOSTICO" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ANTMORBIDO" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="PACIENTES" Relationship="mediManModel.FK_RELATIONSHIP_8" FromRole="FICHAS" ToRole="PACIENTES" />
+          <NavigationProperty Name="PACIENTES" Relationship="Self.FK_RELATIONSHIP_8" FromRole="FICHAS" ToRole="PACIENTES" />
         </EntityType>
+        <EntityType Name="PACIENTES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEP_ID" Type="Int32" Nullable="false" />
+          <Property Name="ACT_ID" Type="Int32" Nullable="false" />
+          <Property Name="RUT" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APELLIDOP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APELLIDOM" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="FDENAC" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EDAD" Type="Int32" Nullable="false" />
+          <Property Name="SEXO" Type="Boolean" Nullable="false" />
+          <Property Name="TELEFONOP" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PREVISION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CALLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NUMCALLE" Type="Int32" Nullable="false" />
+          <Property Name="DPTO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="COMUNA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ACTIVIDADES" Relationship="Self.FK_RELATIONSHIP_5" FromRole="PACIENTES" ToRole="ACTIVIDADES" />
+          <NavigationProperty Name="CONSULTAS" Relationship="Self.FK_RELATIONSHIP_7" FromRole="PACIENTES" ToRole="CONSULTAS" />
+          <NavigationProperty Name="DEPORTES" Relationship="Self.FK_RELATIONSHIP_6" FromRole="PACIENTES" ToRole="DEPORTES" />
+          <NavigationProperty Name="FICHAS" Relationship="Self.FK_RELATIONSHIP_8" FromRole="PACIENTES" ToRole="FICHAS" />
+        </EntityType>
+        <Association Name="FK_RELATIONSHIP_5">
+          <End Role="ACTIVIDADES" Type="Self.ACTIVIDADES" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PACIENTES" Type="Self.PACIENTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACTIVIDADES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PACIENTES">
+              <PropertyRef Name="ACT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_RELATIONSHIP_4">
           <End Role="EMPLEADOS" Type="Self.EMPLEADOS" Multiplicity="1" />
           <End Role="CONSULTAS" Type="Self.CONSULTAS" Multiplicity="*" />
@@ -242,76 +288,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="mediManContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="ACTIVIDADES" EntityType="Self.ACTIVIDADES" />
-          <EntitySet Name="CONSULTAS" EntityType="Self.CONSULTAS" />
-          <EntitySet Name="DEPORTES" EntityType="Self.DEPORTES" />
-          <EntitySet Name="EMPLEADOS" EntityType="Self.EMPLEADOS" />
-          <EntitySet Name="FICHAS" EntityType="Self.FICHAS" />
-          <AssociationSet Name="FK_RELATIONSHIP_4" Association="Self.FK_RELATIONSHIP_4">
-            <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
-            <End Role="CONSULTAS" EntitySet="CONSULTAS" />
-          </AssociationSet>
-          <EntitySet Name="PACIENTES" EntityType="mediManModel.PACIENTES" />
-          <AssociationSet Name="FK_RELATIONSHIP_5" Association="mediManModel.FK_RELATIONSHIP_5">
-            <End Role="ACTIVIDADES" EntitySet="ACTIVIDADES" />
-            <End Role="PACIENTES" EntitySet="PACIENTES" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RELATIONSHIP_7" Association="mediManModel.FK_RELATIONSHIP_7">
-            <End Role="PACIENTES" EntitySet="PACIENTES" />
-            <End Role="CONSULTAS" EntitySet="CONSULTAS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RELATIONSHIP_6" Association="mediManModel.FK_RELATIONSHIP_6">
-            <End Role="DEPORTES" EntitySet="DEPORTES" />
-            <End Role="PACIENTES" EntitySet="PACIENTES" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RELATIONSHIP_8" Association="mediManModel.FK_RELATIONSHIP_8">
-            <End Role="PACIENTES" EntitySet="PACIENTES" />
-            <End Role="FICHAS" EntitySet="FICHAS" />
-          </AssociationSet>
-          </EntityContainer>
-        <EntityType Name="PACIENTES">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DEP_ID" Type="Int32" />
-          <Property Name="ACT_ID" Type="Int32" />
-          <Property Name="RUT" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="APELLIDOP" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="APELLIDOM" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="FDENAC" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="EDAD" Type="Int32" Nullable="false" />
-          <Property Name="SEXO" Type="Boolean" Nullable="false" />
-          <Property Name="TELEFONOP" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="PREVISION" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CALLE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NUMCALLE" Type="Int32" Nullable="false" />
-          <Property Name="DPTO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="COMUNA" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ACTIVIDADES" Relationship="mediManModel.FK_RELATIONSHIP_5" FromRole="PACIENTES" ToRole="ACTIVIDADES" />
-          <NavigationProperty Name="CONSULTAS" Relationship="mediManModel.FK_RELATIONSHIP_7" FromRole="PACIENTES" ToRole="CONSULTAS" />
-          <NavigationProperty Name="DEPORTES" Relationship="mediManModel.FK_RELATIONSHIP_6" FromRole="PACIENTES" ToRole="DEPORTES" />
-          <NavigationProperty Name="FICHAS" Relationship="mediManModel.FK_RELATIONSHIP_8" FromRole="PACIENTES" ToRole="FICHAS" />
-        </EntityType>
-        <Association Name="FK_RELATIONSHIP_5">
-          <End Type="mediManModel.ACTIVIDADES" Role="ACTIVIDADES" Multiplicity="0..1" />
-          <End Type="mediManModel.PACIENTES" Role="PACIENTES" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ACTIVIDADES">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="PACIENTES">
-              <PropertyRef Name="ACT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_RELATIONSHIP_7">
-          <End Type="mediManModel.PACIENTES" Role="PACIENTES" Multiplicity="1">
+          <End Role="PACIENTES" Type="Self.PACIENTES" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="mediManModel.CONSULTAS" Role="CONSULTAS" Multiplicity="*" />
+          <End Role="CONSULTAS" Type="Self.CONSULTAS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PACIENTES">
               <PropertyRef Name="ID" />
@@ -322,8 +303,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RELATIONSHIP_6">
-          <End Type="mediManModel.DEPORTES" Role="DEPORTES" Multiplicity="0..1" />
-          <End Type="mediManModel.PACIENTES" Role="PACIENTES" Multiplicity="*" />
+          <End Role="DEPORTES" Type="Self.DEPORTES" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PACIENTES" Type="Self.PACIENTES" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DEPORTES">
               <PropertyRef Name="ID" />
@@ -334,10 +317,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RELATIONSHIP_8">
-          <End Type="mediManModel.PACIENTES" Role="PACIENTES" Multiplicity="1">
+          <End Role="PACIENTES" Type="Self.PACIENTES" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="mediManModel.FICHAS" Role="FICHAS" Multiplicity="*" />
+          <End Role="FICHAS" Type="Self.FICHAS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PACIENTES">
               <PropertyRef Name="ID" />
@@ -347,6 +330,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityContainer Name="mediManContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ACTIVIDADES" EntityType="Self.ACTIVIDADES" />
+          <EntitySet Name="CONSULTAS" EntityType="Self.CONSULTAS" />
+          <EntitySet Name="DEPORTES" EntityType="Self.DEPORTES" />
+          <EntitySet Name="EMPLEADOS" EntityType="Self.EMPLEADOS" />
+          <EntitySet Name="FICHAS" EntityType="Self.FICHAS" />
+          <EntitySet Name="PACIENTES" EntityType="Self.PACIENTES" />
+          <AssociationSet Name="FK_RELATIONSHIP_5" Association="Self.FK_RELATIONSHIP_5">
+            <End Role="ACTIVIDADES" EntitySet="ACTIVIDADES" />
+            <End Role="PACIENTES" EntitySet="PACIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RELATIONSHIP_4" Association="Self.FK_RELATIONSHIP_4">
+            <End Role="EMPLEADOS" EntitySet="EMPLEADOS" />
+            <End Role="CONSULTAS" EntitySet="CONSULTAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RELATIONSHIP_7" Association="Self.FK_RELATIONSHIP_7">
+            <End Role="PACIENTES" EntitySet="PACIENTES" />
+            <End Role="CONSULTAS" EntitySet="CONSULTAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RELATIONSHIP_6" Association="Self.FK_RELATIONSHIP_6">
+            <End Role="DEPORTES" EntitySet="DEPORTES" />
+            <End Role="PACIENTES" EntitySet="PACIENTES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RELATIONSHIP_8" Association="Self.FK_RELATIONSHIP_8">
+            <End Role="PACIENTES" EntitySet="PACIENTES" />
+            <End Role="FICHAS" EntitySet="FICHAS" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -367,7 +378,8 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="EMP_ID" ColumnName="EMP_ID" />
                 <ScalarProperty Name="PAC_ID" ColumnName="PAC_ID" />
-                <ScalarProperty Name="FECHAHORA" ColumnName="FECHAHORA" />
+                <ScalarProperty Name="HORA" ColumnName="HORA" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
                 <ScalarProperty Name="BOX" ColumnName="BOX" />
                 <ScalarProperty Name="SESION" ColumnName="SESION" />
               </MappingFragment>
@@ -412,22 +424,22 @@
           <EntitySetMapping Name="PACIENTES">
             <EntityTypeMapping TypeName="mediManModel.PACIENTES">
               <MappingFragment StoreEntitySet="PACIENTES">
-                <ScalarProperty Name="COMUNA" ColumnName="COMUNA" />
-                <ScalarProperty Name="DPTO" ColumnName="DPTO" />
-                <ScalarProperty Name="NUMCALLE" ColumnName="NUMCALLE" />
-                <ScalarProperty Name="CALLE" ColumnName="CALLE" />
-                <ScalarProperty Name="PREVISION" ColumnName="PREVISION" />
-                <ScalarProperty Name="TELEFONOP" ColumnName="TELEFONOP" />
-                <ScalarProperty Name="SEXO" ColumnName="SEXO" />
-                <ScalarProperty Name="EDAD" ColumnName="EDAD" />
-                <ScalarProperty Name="FDENAC" ColumnName="FDENAC" />
-                <ScalarProperty Name="APELLIDOM" ColumnName="APELLIDOM" />
-                <ScalarProperty Name="APELLIDOP" ColumnName="APELLIDOP" />
-                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
-                <ScalarProperty Name="RUT" ColumnName="RUT" />
-                <ScalarProperty Name="ACT_ID" ColumnName="ACT_ID" />
-                <ScalarProperty Name="DEP_ID" ColumnName="DEP_ID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DEP_ID" ColumnName="DEP_ID" />
+                <ScalarProperty Name="ACT_ID" ColumnName="ACT_ID" />
+                <ScalarProperty Name="RUT" ColumnName="RUT" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="APELLIDOP" ColumnName="APELLIDOP" />
+                <ScalarProperty Name="APELLIDOM" ColumnName="APELLIDOM" />
+                <ScalarProperty Name="FDENAC" ColumnName="FDENAC" />
+                <ScalarProperty Name="EDAD" ColumnName="EDAD" />
+                <ScalarProperty Name="SEXO" ColumnName="SEXO" />
+                <ScalarProperty Name="TELEFONOP" ColumnName="TELEFONOP" />
+                <ScalarProperty Name="PREVISION" ColumnName="PREVISION" />
+                <ScalarProperty Name="CALLE" ColumnName="CALLE" />
+                <ScalarProperty Name="NUMCALLE" ColumnName="NUMCALLE" />
+                <ScalarProperty Name="DPTO" ColumnName="DPTO" />
+                <ScalarProperty Name="COMUNA" ColumnName="COMUNA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

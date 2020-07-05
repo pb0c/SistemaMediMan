@@ -56,7 +56,7 @@
             <div class="form-group col-lg-3 col-sm-3 mb-5">
                 @Html.LabelFor(model => model.FDENAC, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.FDENAC, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.FDENAC, new { htmlAttributes = new { @class = "datepicker" } })
                     @Html.ValidationMessageFor(model => model.FDENAC, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -82,15 +82,13 @@
                         listSexo.Add(new SelectListItem
                         {
                             Text = "Femenino",
-                            Value = "0"
+                            Value = "false"
                         });
                         listSexo.Add(new SelectListItem
                         {
                             Text = "Masculino",
-                            Value = "1"
-                        }
-
-                        );
+                            Value = "true"
+                        });
 
                     }
                     @Html.DropDownList("Sexo", listSexo, new { @class = "form-control" })
@@ -200,18 +198,7 @@
             <div class="form-group col-lg-3 col-sm-3 mb-5">
                 @Html.LabelFor(model => model.ACT_ID, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @{
-                        List<SelectListItem> listAct = new List<SelectListItem>();
-                        listAct.Add(new SelectListItem
-                        {
-                            Text = "Seleccione",
-                            Value = "1"
-                        });
-
-
-                    }
-                    @Html.DropDownList("Actividad_id", listAct, new { @class = "form-control" })
-                    @Html.EditorFor(model => model.ACT_ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.Action("ListaAct", "Paciente", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.ACT_ID, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -219,7 +206,7 @@
             <div class="form-group col-lg-3 col-sm-3 mb-5">
                 @Html.LabelFor(model => model.DEP_ID, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.DEP_ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.Action("ListaDep", "Paciente", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.DEP_ID, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -235,7 +222,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Guardar" class="btn" style="background-color:#134C89; color:azure" />
             </div>
         </div>
     </div>
@@ -243,5 +230,5 @@
     }
 
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Volver", "Index")
     </div>

@@ -11,7 +11,9 @@ namespace SistemaMediMan.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class DEPORTES
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +23,9 @@ namespace SistemaMediMan.Models
         }
     
         public int ID { get; set; }
+        [Required]
+        [DisplayName("Deporte")]
+        [RegularExpression("[a-zA-ZñÑáéíóúÁÉÍÓÚ]+", ErrorMessage = "Este campo solo admite letras")]
         public string DEPORTE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -11,7 +11,9 @@ namespace SistemaMediMan.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class PACIENTES
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,21 +24,59 @@ namespace SistemaMediMan.Models
         }
     
         public int ID { get; set; }
-        public Nullable<int> DEP_ID { get; set; }
-        public Nullable<int> ACT_ID { get; set; }
+        [Required]
+        [DisplayName("Deporte")]
+        public int DEP_ID { get; set; }
+        [Required]
+        [DisplayName("Actividad")]
+        public int ACT_ID { get; set; }
+        [Required]
+        [DisplayName("RUT")]
         public string RUT { get; set; }
+        [Required]
+        [DisplayName("Nombre")]
+        [RegularExpression("[a-zA-ZñÑáéíóúÁÉÍÓÚ]+",ErrorMessage ="Este campo solo admite letras")]
         public string NOMBRE { get; set; }
+        [Required]
+        [DisplayName("Apellido")]
+        [RegularExpression("[a-zA-ZñÑáéíóúÁÉÍÓÚ]+", ErrorMessage = "Este campo solo admite letras")]
         public string APELLIDOP { get; set; }
+        
+        [DisplayName("Apellido")]
+        [RegularExpression("[a-zA-ZñÑáéíóúÁÉÍÓÚ]+", ErrorMessage = "Este campo solo admite letras")]
         public string APELLIDOM { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
         public System.DateTime FDENAC { get; set; }
+        [Required]
+        [DisplayName("Edad")]
         public int EDAD { get; set; }
+        [Required]
+        [DisplayName("Sexo")]
         public bool SEXO { get; set; }
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        [DisplayName("Télefono")]
+        [RegularExpression(@"^\(?([9]{1})\)?[-. ]?([0-9]{4})?([0-9]{4})$", ErrorMessage = "Formato inválido")]
         public string TELEFONOP { get; set; }
+        [Required]
+        [DisplayName("Previsión")]
         public string PREVISION { get; set; }
+        [Required]
+        [DisplayName("Dirección")]
+        [RegularExpression("[a-zA-ZñÑáéíóúÁÉÍÓÚ]+", ErrorMessage = "Este campo solo admite letras")]
         public string CALLE { get; set; }
+        [Required]
+        [DisplayName("Número")]
         public int NUMCALLE { get; set; }
+        
+        [DisplayName("Dpto")]
         public string DPTO { get; set; }
+        [Required]
+        [DisplayName("Comuna")]
+        [RegularExpression("[a-zA-ZñÑáéíóúÁÉÍÓÚ]+", ErrorMessage = "Este campo solo admite letras")]
         public string COMUNA { get; set; }
+        
     
         public virtual ACTIVIDADES ACTIVIDADES { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

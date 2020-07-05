@@ -15,7 +15,6 @@
                     <table class="table table-light">
                         <thead class="thead-light">
                             <tr>
-                                <th>#</th>
                                 <th>Rut</th>
                                 <th>Nombre</th>
                                 <th>Teléfono</th>
@@ -28,17 +27,14 @@
                             @foreach (var empleados in Model)
                             {
                                 <tr>
-                                    <td>@empleados.ID</td>
                                     <td>@empleados.RUT</td>
                                     <td>@empleados.NOMBRE @empleados.APELLIDOP @empleados.APELLIDOM</td>
                                     <td>@empleados.TELEFONO</td>
                                     <td>@empleados.ROL</td>
                                     <td>@empleados.USER</td>
                                     <td>
-                                        <a class="btn btn-warning p-1" href="">Editar</a>
-                                        <form action="" method="POST" style="display:inline">
-                                            <button class="btn btn-danger p-1" type="submit" onclick="return confirm('¿Desea eliminar el registro?');">Eliminar</button>
-                                        </form>
+                                        @Html.ActionLink("Editar", "Edit", new { ID = empleados.ID })|
+                                        @Html.ActionLink("Eliminar", "Delete", new { ID = empleados.ID }, new { onclick = "if (! confirm('¿Desea eliminar registro?')) return false;" })
                                     </td>
                                 </tr>
                             }

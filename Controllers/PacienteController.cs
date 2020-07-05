@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using SistemaMediMan.Models;
 using SistemaMediMan.Models.ViewModels;
 
@@ -79,6 +80,7 @@ namespace SistemaMediMan.Controllers
                         pac.NOMBRE = model.NOMBRE;
                         pac.APELLIDOP = model.APELLIDOP;
                         pac.APELLIDOM = model.APELLIDOM;
+                        pac.FDENAC = model.FDENAC;
                         pac.EDAD = model.EDAD;
                         pac.SEXO = model.SEXO;
                         pac.TELEFONOP = model.TELEFONOP;
@@ -127,9 +129,11 @@ namespace SistemaMediMan.Controllers
                 using (mediManContext db = new mediManContext())
                 {
                     PACIENTES pac = db.PACIENTES.Find(model.ID);
+                    pac.RUT = model.RUT;
                     pac.NOMBRE = model.NOMBRE;
                     pac.APELLIDOP = model.APELLIDOP;
                     pac.APELLIDOM = model.APELLIDOM;
+                    pac.FDENAC = model.FDENAC;
                     pac.EDAD = model.EDAD;
                     pac.SEXO = model.SEXO;
                     pac.TELEFONOP = model.TELEFONOP;
@@ -181,5 +185,42 @@ namespace SistemaMediMan.Controllers
                 return View();
             }
         }
+
+        //Listar actividades para vista parcial
+        public ActionResult ListaAct()
+        {
+            using (var db = new mediManContext())
+            {
+                return PartialView(db.ACTIVIDADES.ToList());
+            }
+        }
+
+        //Listar deportes para vista parcial
+        public ActionResult ListaDep()
+        {
+            using (var db = new mediManContext())
+            {
+                return PartialView(db.DEPORTES.ToList());
+            }
+        }
+
+        public static string NomAct(int ACT_ID)
+        {
+            using (mediManContext db = new mediManContext())
+            {
+              return db.ACTIVIDADES.Find(ACT_ID).ACTIVIDAD;
+                           
+            }
+        }
+
+        public static string NomDep(int DEP_ID)
+        {
+            using (mediManContext db = new mediManContext())
+            {
+                return db.DEPORTES.Find(DEP_ID).DEPORTE;
+            }
+        }
+
+        //DEP_ID guarda ACT_ID, PENDIENTE REVISAR
     }
 }

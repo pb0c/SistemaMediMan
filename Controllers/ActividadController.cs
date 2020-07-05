@@ -14,18 +14,17 @@ namespace SistemaMediMan.Controllers
         // GET: Actividad
         public ActionResult Index()
         {
-            List<ListActividadViewModel> lista;
-            using (mediManContext db = new mediManContext())
+            try
             {
-                lista = (from d in db.ACTIVIDADES
-                         select new ListActividadViewModel
-                         {
-                             Id=d.ID,
-                             Nombre=d.ACTIVIDAD,
-
-                         }).ToList();
+                using (mediManContext db = new mediManContext())
+                {
+                    return View(db.ACTIVIDADES.ToList());
+                }
             }
-                return View(lista);
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         // GET: Actividad/Details/5
@@ -42,7 +41,7 @@ namespace SistemaMediMan.Controllers
 
         // POST: Actividad/Create
         [HttpPost]
-        public ActionResult Create(ListActividadViewModel model)
+        public ActionResult Create(ACTIVIDADES model)
         {
             try
             {
@@ -51,7 +50,7 @@ namespace SistemaMediMan.Controllers
                     using (mediManContext db = new mediManContext())
                     {
                         var act = new ACTIVIDADES();
-                        act.ACTIVIDAD = model.Nombre;
+                        act.ACTIVIDAD = model.ACTIVIDAD;
 
 
                         db.ACTIVIDADES.Add(act);
@@ -63,28 +62,45 @@ namespace SistemaMediMan.Controllers
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                ModelState.AddModelError("", "Error al crear registro " + e.Message);
+                return View();
             }
         }
 
         // GET: Actividad/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            using (mediManContext db = new mediManContext())
+            {
+                ACTIVIDADES act = db.ACTIVIDADES.Find(id);
+                return View(act);
+            }
         }
 
         // POST: Actividad/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(ACTIVIDADES model)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    using (mediManContext db = new mediManContext())
+                    {
+                        var act = new ACTIVIDADES();
+                        act.ACTIVIDAD = model.ACTIVIDAD;
 
-                return RedirectToAction("Index");
+
+                        db.ACTIVIDADES.Add(act);
+                        db.SaveChanges();
+                    }
+                    return Redirect("Index/");
+                }
+                return View(model);
             }
-            catch
+            catch (Exception e)
             {
+                ModelState.AddModelError("", "Error al actualizar " + e.Message);
                 return View();
             }
         }
@@ -92,7 +108,14 @@ namespace SistemaMediMan.Controllers
         // GET: Actividad/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            using (mediManContext db = new mediManContext())
+            {
+                ACTIVIDADES act = db.ACTIVIDADES.Find(id);
+                db.ACTIVIDADES.Remove(act);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
         }
 
         // POST: Actividad/Delete/5

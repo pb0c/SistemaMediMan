@@ -1,49 +1,50 @@
-﻿
+﻿@model IEnumerable<SistemaMediMan.Models.ACTIVIDADES>
 @{
     ViewBag.Title = "Actividades";
 }
 
-<h2>@ViewBag.Title</h2>
 
-<main>
-    <!--Inicio container-->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 col-sm-10">
-                <table class="table table-light">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>#</th>
-                            <th>Actividad</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
+
+    <main>
+        <h4>@ViewBag.Title</h4>
+        </hr>
+        <!--Inicio container-->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-sm-10">
+                    <table class="table table-light">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Actividad</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             @foreach (var actividades in Model)
                             {
-                                <td>@actividades.Id</td>
-                                <td>@actividades.Nombre</td>
+                                <tr>
 
-                                <td>
-                                    <a class="btn btn-warning" href="">Editar</a>
-                                    <form action="" method="POST" style="display:inline">
-                                        <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea eliminar el registro?');">Eliminar</button>
-                                    </form>
-                                </td>
+                                    <td>@actividades.ID</td>
+                                    <td>@actividades.ACTIVIDAD</td>
+                                    <td>
+                                        @Html.ActionLink("Eliminar", "Delete", new { ID = actividades.ID }, new { onclick = "if (! confirm('¿Desea eliminar registro?')) return false;" })
+                                    </td>
+                                    
+                                </tr>
                             }
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <form action="@Url.Action("Create","Actividad")" method="get">
-            <div class="row">
-                <div class="offset-lg-10 col-lg-2 offset-sm-10 col-sm-2">
-                    <button class="btn">Agregar</button>
+                            </tbody>
+                    </table>
                 </div>
             </div>
-        </form>
-    </div> <!--fin container-->
-</main>
+            <form action="@Url.Action("Create","Actividad")" method="get">
+                <div class="row">
+                    <div class="offset-lg-10 col-lg-2 offset-sm-10 col-sm-2">
+                        <button class="btn" style="background-color:#134C89; color:azure">Nueva Actividad</button>
+                    </div>
+                </div>
+            </form>
+        </div> <!--fin container-->
+    </main>
 
 

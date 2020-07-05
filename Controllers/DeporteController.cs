@@ -13,19 +13,17 @@ namespace SistemaMediMan.Controllers
         // GET: Deporte
         public ActionResult Index()
         {
-            List<ListDeporteViewModel> lista;
-            using (mediManContext db = new mediManContext())
+            try
             {
-                lista = (from d in db.DEPORTES
-                         select new ListDeporteViewModel
-                         {
-                             Id=d.ID,
-                             Nombre=d.DEPORTE,
-
-                         }).ToList();
+                using (mediManContext db = new mediManContext())
+                {
+                    return View(db.DEPORTES.ToList());
+                }
             }
-
-            return View(lista);
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         // GET: Deporte/Details/5
@@ -42,7 +40,7 @@ namespace SistemaMediMan.Controllers
 
         // POST: Deporte/Create
         [HttpPost]
-        public ActionResult Create(ListDeporteViewModel model)
+        public ActionResult Create(DEPORTES model)
         {
             try
             {
@@ -51,7 +49,7 @@ namespace SistemaMediMan.Controllers
                     using (mediManContext db = new mediManContext())
                     {
                         var dep = new DEPORTES();
-                        dep.DEPORTE = model.Nombre;
+                        dep.DEPORTE = model.DEPORTE;
 
 
                         db.DEPORTES.Add(dep);
@@ -63,28 +61,45 @@ namespace SistemaMediMan.Controllers
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message);
+                ModelState.AddModelError("", "Error al crear registro " + e.Message);
+                return View();
             }
         }
 
         // GET: Deporte/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            using (mediManContext db = new mediManContext())
+            {
+                DEPORTES dep = db.DEPORTES.Find(id);
+                return View(dep);
+            }
         }
 
         // POST: Deporte/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(DEPORTES model)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    using (mediManContext db = new mediManContext())
+                    {
+                        var dep = new DEPORTES();
+                        dep.DEPORTE = model.DEPORTE;
 
-                return RedirectToAction("Index");
+
+                        db.DEPORTES.Add(dep);
+                        db.SaveChanges();
+                    }
+                    return Redirect("Index/");
+                }
+                return View(model);
             }
-            catch
+            catch (Exception e)
             {
+                ModelState.AddModelError("", "Error al actualizar " + e.Message);
                 return View();
             }
         }
@@ -92,7 +107,14 @@ namespace SistemaMediMan.Controllers
         // GET: Deporte/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            using (mediManContext db = new mediManContext())
+            {
+                DEPORTES dep = db.DEPORTES.Find(id);
+                db.DEPORTES.Remove(dep);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
         }
 
         // POST: Deporte/Delete/5
