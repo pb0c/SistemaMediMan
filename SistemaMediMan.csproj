@@ -514,10 +514,6 @@
     <Content Include="Views\Consult\Create.cshtml" />
     <Content Include="Views\Deporte\Index.cshtml" />
     <Content Include="Views\Actividad\Create.cshtml" />
-    <Content Include="Views\Ficha\Create.cshtml" />
-    <Content Include="Views\Ficha\Delete.cshtml" />
-    <Content Include="Views\Ficha\Details.cshtml" />
-    <Content Include="Views\Ficha\Edit.cshtml" />
     <Content Include="Views\Ficha\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -536,6 +532,8 @@
     <Content Include="Views\Empleado\Edit.cshtml" />
     <Content Include="Views\Paciente\ListaAct.cshtml" />
     <Content Include="Views\Paciente\ListaDep.cshtml" />
+    <Content Include="Views\Paciente\ver.cshtml" />
+    <Content Include="Views\Paciente\verFichas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<SistemaMediMan.Models.FICHAS>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Fichas Clínicas";
+}
+
+
+
+<main>
+    <h4>@ViewBag.Title</h4>
+    <div class="container">
+        @foreach (var item in Model)
+        {
+                <div class="row">
+                    <!--inicio row 1-->
+                    @Html.LabelFor(model => item.MEDICO)
+                    @Html.EditorFor(model => item.MEDICO)
+                </div><!--fin row 1-->
+                <div class="row">
+                    @Html.LabelFor(model => item.DIAGNOSTICO)
+                    @Html.EditorFor(model => item.DIAGNOSTICO)
+                </div>
+                <div class="row">
+                    @Html.LabelFor(model => item.MEDICAMENTO)
+                    @Html.TextAreaFor(model => item.MEDICAMENTO)
+                </div>
+                <div class="row">
+                    @Html.LabelFor(model => item.TRATAMIENTO)
+                    @Html.TextAreaFor(model => item.TRATAMIENTO)
+                </div>
+                <div class="row">
+                    @Html.LabelFor(model => item.ANTMORBIDO)
+                    @Html.TextAreaFor(model => item.ANTMORBIDO)
+                </div>
+       
+
+        }
+    </div>
+</main>
+
+
+

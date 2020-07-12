@@ -221,6 +221,31 @@ namespace SistemaMediMan.Controllers
             }
         }
 
+        public ActionResult verFichas(int id)
+        {
+            try
+            {
+                using (var db = new mediManContext())
+                {
+                    var p = db.PACIENTES.Find(id);
+                    var f = db.FICHAS.Find(id);
+                    if (p.ID == f.PAC_ID)
+                    {
+                        return View(db.FICHAS.ToList());
+
+                    }
+                    //se cae cuando paciente no tiene ficha
+                    return View("FichaController/Index");
+                }
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", "Paciente no tiene ficha creada " + e.Message);
+                return View();
+            }
+            
+        }
+
         //DEP_ID guarda ACT_ID, PENDIENTE REVISAR
     }
 }

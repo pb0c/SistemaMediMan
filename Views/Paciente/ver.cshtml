@@ -1,0 +1,28 @@
+﻿@model IEnumerable<SistemaMediMan.Models.FICHAS>
+
+
+
+@foreach (var item in Model)
+{
+    model => item.PAC_ID
+    <div class="row"><!--inicio row 1-->
+        @Html.LabelFor(model => item.MEDICO)
+        @Html.EditorFor(model => item.MEDICO)
+    </div><!--fin row 1-->
+    <div class="row">
+        @Html.LabelFor(model => item.DIAGNOSTICO)
+        @Html.EditorFor(model => item.DIAGNOSTICO)
+    </div>
+    <div class="row">
+        @Html.LabelFor(model => item.MEDICAMENTO)
+        @Html.TextAreaFor(model => item.MEDICAMENTO)
+    </div>
+    <div class="row">
+        @Html.LabelFor(model => item.TRATAMIENTO)
+        @Html.TextAreaFor(model => item.TRATAMIENTO)
+    </div>
+    <div class="row">
+        @Html.LabelFor(model => item.ANTMORBIDO)
+        @Html.TextAreaFor(model => item.ANTMORBIDO)
+    </div>
+}

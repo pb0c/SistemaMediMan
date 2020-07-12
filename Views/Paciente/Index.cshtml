@@ -50,11 +50,11 @@
                                     <td>@pacientes.PREVISION</td>
                                     <td>@pacientes.CALLE @pacientes.NUMCALLE @pacientes.DPTO. @pacientes.COMUNA</td>
                                     <td>@SistemaMediMan.Controllers.PacienteController.NomAct(pacientes.ACT_ID)</td>
-                                    <td>@SistemaMediMan.Controllers.PacienteController.NomAct(pacientes.DEP_ID)</td>
+                                    <td>@SistemaMediMan.Controllers.PacienteController.NomDep(pacientes.DEP_ID)</td>
 
                                     <td>
                                         @Html.ActionLink("Editar", "Edit", new { ID = pacientes.ID })|
-                                        @Html.ActionLink("Ver Ficha", "", new { ID = pacientes.ID })|
+                                        @Html.ActionLink("Ver Ficha", "verFichas", new { ID = pacientes.ID })|
                                         @Html.ActionLink("Eliminar", "Delete", new { ID = pacientes.ID },new { onclick= "if (! confirm('¿Desea eliminar registro?')) return false;" } )
 
                                     </td>
