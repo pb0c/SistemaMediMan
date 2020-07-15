@@ -14,6 +14,10 @@ namespace SistemaMediMan.Models
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
+    /// <summary>
+    /// Clase Paciente. Contiene todos los atributos que corresponden a la clase paciente
+    /// También se incluyen sus llaves foráneas.
+    /// </summary>
     public partial class PACIENTES
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

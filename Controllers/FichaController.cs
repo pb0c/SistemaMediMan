@@ -11,11 +11,15 @@ using SistemaMediMan.Models.ViewModels;
 
 namespace SistemaMediMan.Controllers
 {
+    /// <summary>
+    /// Controlador para clase Ficha. Contiene el CRUD.
+    /// </summary>
     public class FichaController : Controller
     {
         private mediManContext db = new mediManContext();
 
         // GET: Ficha
+
         public ActionResult Index()
         {
             try
@@ -64,6 +68,11 @@ namespace SistemaMediMan.Controllers
         // POST: Ficha/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Método crear
+        /// </summary>
+        /// <param name="model">Datos ingresados por usuario</param>
+        /// <returns>Registra una nueva ficha al paciente</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(ListFichaViewModel model)
@@ -96,6 +105,11 @@ namespace SistemaMediMan.Controllers
         }
 
         // GET: Ficha/Edit/5
+        /// <summary>
+        /// Método editar, obtiene los datos de la ficha seleccionada
+        /// </summary>
+        /// <param name="id">Identificador del registro seleccionado</param>
+        /// <returns>Muestra los datos de la ficha seleccionada</returns>
         public ActionResult Edit(int id)
         {
             
@@ -105,6 +119,11 @@ namespace SistemaMediMan.Controllers
         // POST: Ficha/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Método editar, envía los cambios realizados al registro
+        /// </summary>
+        /// <param name="model">Datos ingresados por el usuario</param>
+        /// <returns>Actualiza los cambios realizados al registro</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ListFichaViewModel model)
@@ -113,6 +132,11 @@ namespace SistemaMediMan.Controllers
         }
 
         // GET: Ficha/Delete/5
+        /// <summary>
+        /// Método eliminar
+        /// </summary>
+        /// <param name="id">Identificador del registro seleccionado</param>
+        /// <returns>Elimina el registro y actualiza el listado</returns>
         public ActionResult Delete(int id)
         {
             return View();

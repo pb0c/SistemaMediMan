@@ -14,6 +14,11 @@ namespace SistemaMediMan.Models
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
+    /// <summary>
+    /// Clase Actividad. Contiene todos los atributos que corresponden a la clase actividad
+    /// También se incluyen sus llaves foráneas.
+    /// </summary>
+
     public partial class ACTIVIDADES
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

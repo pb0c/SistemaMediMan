@@ -13,7 +13,10 @@ namespace SistemaMediMan.Models
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-
+    /// <summary>
+    /// Clase Ficha. Contiene todos los atributos que corresponden a la clase ficha
+    /// También se incluyen sus llaves foráneas.
+    /// </summary>
     public partial class FICHAS
     {
         public int ID { get; set; }

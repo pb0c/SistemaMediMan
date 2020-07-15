@@ -8,9 +8,16 @@ using System.Web.Mvc;
 
 namespace SistemaMediMan.Controllers
 {
+    /// <summary>
+    /// Controlador para clase Deporte. Contiene el CRUD.
+    /// </summary>
     public class DeporteController : Controller
     {
         // GET: Deporte
+        /// <summary>
+        /// Muestra los deportes registrados en la BD
+        /// </summary>
+        /// <returns>Listado de deportes registrados en el sistema</returns>
         public ActionResult Index()
         {
             try
@@ -39,6 +46,11 @@ namespace SistemaMediMan.Controllers
         }
 
         // POST: Deporte/Create
+        /// <summary>
+        /// Método crear
+        /// </summary>
+        /// <param name="model">Datos ingresados por usuario</param>
+        /// <returns>Registra un nuevo deporte</returns>
         [HttpPost]
         public ActionResult Create(DEPORTES model)
         {
@@ -67,6 +79,11 @@ namespace SistemaMediMan.Controllers
         }
 
         // GET: Deporte/Edit/5
+        /// <summary>
+        /// Método editar
+        /// </summary>
+        /// <param name="id">Identificador del registro seleccionado</param>
+        /// <returns>Muestra el detalle del deporte seleccionada</returns>
         public ActionResult Edit(int id)
         {
             using (mediManContext db = new mediManContext())
@@ -77,6 +94,11 @@ namespace SistemaMediMan.Controllers
         }
 
         // POST: Deporte/Edit/5
+        /// <summary>
+        /// Método editar, envía los cambios realizados al registro
+        /// </summary>
+        /// <param name="model">Datos ingresados por el usuario</param>
+        /// <returns>Actualiza los cambios realizados al registro</returns>
         [HttpPost]
         public ActionResult Edit(DEPORTES model)
         {
@@ -105,6 +127,11 @@ namespace SistemaMediMan.Controllers
         }
 
         // GET: Deporte/Delete/5
+        /// <summary>
+        /// Método eliminar
+        /// </summary>
+        /// <param name="id">Identificador del registro seleccionado</param>
+        /// <returns>Elimina el registro y actualiza el listado</returns>
         public ActionResult Delete(int id)
         {
             using (mediManContext db = new mediManContext())

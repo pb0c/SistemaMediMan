@@ -10,9 +10,16 @@ using SistemaMediMan.Models.ViewModels;
 
 namespace SistemaMediMan.Controllers
 {
+    /// <summary>
+    /// Controlador para clase Paciente. Contiene el CRUD.
+    /// </summary>
     public class PacienteController : Controller
     {
         // GET: Paciente
+        /// <summary>
+        /// Muestra los datos de pacientes registrados
+        /// </summary>
+        /// <returns>Listado de pacientes registrados en el sistema</returns>
         public ActionResult Index()
         {
             try
@@ -65,6 +72,11 @@ namespace SistemaMediMan.Controllers
         }
 
         // POST: Paciente/Create
+        /// <summary>
+        /// Método crear
+        /// </summary>
+        /// <param name="model">Datos ingresados por usuario</param>
+        /// <returns>Registra un nuevo paciente</returns>
         [HttpPost]
         public ActionResult Create(PACIENTES model)
 
@@ -110,6 +122,11 @@ namespace SistemaMediMan.Controllers
         }
 
         // GET: Paciente/Edit/5
+        /// <summary>
+        /// Método editar, obtiene los datos del paciente seleccionado
+        /// </summary>
+        /// <param name="id">Identificador del registro seleccionado</param>
+        /// <returns>Muestra los datos del paciente seleccionado</returns>
         public ActionResult Edit(int id)
         {
             using (mediManContext db = new mediManContext())
@@ -121,6 +138,11 @@ namespace SistemaMediMan.Controllers
         }
 
         // POST: Paciente/Edit/5
+        /// <summary>
+        /// Método editar, envía los cambios realizados al registro
+        /// </summary>
+        /// <param name="model">Datos ingresados por el usuario</param>
+        /// <returns>Actualiza los cambios realizados al registro</returns>
         [HttpPost]
         public ActionResult Edit(PACIENTES model)
         {
@@ -158,6 +180,11 @@ namespace SistemaMediMan.Controllers
         }
 
         // GET: Paciente/Delete/5
+        /// <summary>
+        /// Método eliminar.
+        /// </summary>
+        /// <param name="id">Identificador del registro seleccionado.</param>
+        /// <returns>Elimina el registro y actualiza el listado.</returns>
         public ActionResult Delete(int id)
         {
             using (mediManContext db = new mediManContext())
@@ -187,6 +214,10 @@ namespace SistemaMediMan.Controllers
         }
 
         //Listar actividades para vista parcial
+        /// <summary>
+        /// Vista parcial de actividades
+        /// </summary>
+        /// <returns>Muestra un listado de los id de las actividades registradas en la BD</returns>
         public ActionResult ListaAct()
         {
             using (var db = new mediManContext())
@@ -196,6 +227,10 @@ namespace SistemaMediMan.Controllers
         }
 
         //Listar deportes para vista parcial
+        /// <summary>
+        /// Vista parcial de deportes
+        /// </summary>
+        /// <returns>Muestra un listado de los id de deportes registradas en la BD</returns>
         public ActionResult ListaDep()
         {
             using (var db = new mediManContext())
@@ -204,6 +239,11 @@ namespace SistemaMediMan.Controllers
             }
         }
 
+        /// <summary>
+        /// Cambia la visualización del id por el nombre de la actividad
+        /// </summary>
+        /// <param name="ACT_ID">Recibe el identificador</param>
+        /// <returns>Devuelve el nombre de la actividad</returns>
         public static string NomAct(int ACT_ID)
         {
             using (mediManContext db = new mediManContext())
@@ -212,7 +252,11 @@ namespace SistemaMediMan.Controllers
                            
             }
         }
-
+        /// <summary>
+        /// Cambia la visualización del id por el nombre del deporte
+        /// </summary>
+        /// <param name="DEP_ID">Recibe el identificador</param>
+        /// <returns>Devuelve el nombre del deporte</returns>
         public static string NomDep(int DEP_ID)
         {
             using (mediManContext db = new mediManContext())
@@ -220,7 +264,11 @@ namespace SistemaMediMan.Controllers
                 return db.DEPORTES.Find(DEP_ID).DEPORTE;
             }
         }
-
+        /// <summary>
+        /// Permite ver las fichas
+        /// </summary>
+        /// <param name="id">Identificador del paciente</param>
+        /// <returns>Visualiza ficha de paciente seleccionado</returns>
         public ActionResult verFichas(int id)
         {
             try
@@ -246,6 +294,5 @@ namespace SistemaMediMan.Controllers
             
         }
 
-        //DEP_ID guarda ACT_ID, PENDIENTE REVISAR
     }
 }

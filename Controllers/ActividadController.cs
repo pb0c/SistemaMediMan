@@ -9,9 +9,16 @@ using SistemaMediMan.Models.ViewModels;
 
 namespace SistemaMediMan.Controllers
 {
+    /// <summary>
+    /// Controlador para clase Actividad. Contiene el CRUD.
+    /// </summary>
     public class ActividadController : Controller
     {
         // GET: Actividad
+        /// <summary>
+        /// Muestra las actividades registradas en la BD
+        /// </summary>
+        /// <returns>Listado de actividades registradas en el sistema</returns>
         public ActionResult Index()
         {
             try
@@ -40,6 +47,11 @@ namespace SistemaMediMan.Controllers
         }
 
         // POST: Actividad/Create
+        /// <summary>
+        /// Método crear
+        /// </summary>
+        /// <param name="model">Datos ingresados por usuario</param>
+        /// <returns>Registra una nueva actividad</returns>
         [HttpPost]
         public ActionResult Create(ACTIVIDADES model)
         {
@@ -68,6 +80,11 @@ namespace SistemaMediMan.Controllers
         }
 
         // GET: Actividad/Edit/5
+        /// <summary>
+        /// Método editar
+        /// </summary>
+        /// <param name="id">Identificador del registro seleccionado</param>
+        /// <returns>Muestra el detalle de la actividad seleccionada</returns>
         public ActionResult Edit(int id)
         {
             using (mediManContext db = new mediManContext())
@@ -78,6 +95,11 @@ namespace SistemaMediMan.Controllers
         }
 
         // POST: Actividad/Edit/5
+        /// <summary>
+        /// Método editar, envía los cambios realizados al registro
+        /// </summary>
+        /// <param name="model">Datos ingresados por el usuario</param>
+        /// <returns>Actualiza los cambios realizados al registro</returns>
         [HttpPost]
         public ActionResult Edit(ACTIVIDADES model)
         {
@@ -106,6 +128,11 @@ namespace SistemaMediMan.Controllers
         }
 
         // GET: Actividad/Delete/5
+        /// <summary>
+        /// Método eliminar
+        /// </summary>
+        /// <param name="id">Identificador del registro seleccionado</param>
+        /// <returns>Elimina el registro y actualiza el listado</returns>
         public ActionResult Delete(int id)
         {
             using (mediManContext db = new mediManContext())
