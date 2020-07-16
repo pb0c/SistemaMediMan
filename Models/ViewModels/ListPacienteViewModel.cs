@@ -40,7 +40,6 @@ namespace SistemaMediMan.Models.ViewModels
 		[Required]
 		[Display(Name = "Telefono")]
 		[DataType(DataType.PhoneNumber)]
-		//[RegularExpression(@"^\(? ([0 - 9]{1})\)?[-. ]? ([0 - 9]{8})$",ErrorMessage ="Número de teléfono no válido")]
 		public string Telefono { get; set; }
 		[Required]
 		[Display(Name = "Previsión")]

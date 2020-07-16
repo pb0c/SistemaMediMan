@@ -13,7 +13,7 @@ namespace SistemaMediMan.Models.ViewModels
     {
         public int Id { get; set; }
         [Required]
-        [DisplayName("Deporte")]
+        [DisplayName("Actividad")]
         [RegularExpression("[a-zA-ZñÑáéíóúÁÉÍÓÚ]+", ErrorMessage = "Este campo solo admite letras")]
         public string Nombre { get; set; }
 

@@ -159,5 +159,18 @@ namespace SistemaMediMan.Controllers
             }
             base.Dispose(disposing);
         }
+        /// <summary>
+        /// Muestra el nombre del paciente al que pertenece la ficha.
+        /// </summary>
+        /// <param name="PAC_ID"></param>
+        /// <returns>Retorna nombre del paciente.</returns>
+        public static string NomPac(int PAC_ID)
+        {
+            using (mediManContext db = new mediManContext())
+            {
+                return db.PACIENTES.Find(PAC_ID).NOMBRE;
+
+            }
+        }
     }
 }

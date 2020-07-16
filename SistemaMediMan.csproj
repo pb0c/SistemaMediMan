@@ -152,23 +152,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Actividad.cs" />
     <Compile Include="Models\ACTIVIDADES.cs">
       <DependentUpon>ModelMediMan.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Consulta.cs" />
     <Compile Include="Models\CONSULTAS.cs">
       <DependentUpon>ModelMediMan.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Deporte.cs" />
     <Compile Include="Models\DEPORTES.cs">
       <DependentUpon>ModelMediMan.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\EMPLEADOS.cs">
       <DependentUpon>ModelMediMan.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Ficha.cs" />
     <Compile Include="Models\FICHAS.cs">
       <DependentUpon>ModelMediMan.tt</DependentUpon>
     </Compile>
@@ -187,7 +182,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelMediMan.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Paciente.cs" />
     <Compile Include="Models\PACIENTES.cs">
       <DependentUpon>ModelMediMan.tt</DependentUpon>
     </Compile>
@@ -197,7 +191,6 @@
     <Compile Include="Models\ViewModels\ListEmpleadoViewModel.cs" />
     <Compile Include="Models\ViewModels\ListFichaViewModel.cs" />
     <Compile Include="Models\ViewModels\ListPacienteViewModel.cs" />
-    <Compile Include="Models\ViewModels\ViewPacActDepModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

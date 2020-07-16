@@ -6,37 +6,60 @@
 }
 
 
-
 <main>
-    <h4>@ViewBag.Title</h4>
     <div class="container">
         @foreach (var item in Model)
         {
-                <div class="row">
-                    <!--inicio row 1-->
-                    @Html.LabelFor(model => item.MEDICO)
-                    @Html.EditorFor(model => item.MEDICO)
-                </div><!--fin row 1-->
-                <div class="row">
-                    @Html.LabelFor(model => item.DIAGNOSTICO)
-                    @Html.EditorFor(model => item.DIAGNOSTICO)
-                </div>
-                <div class="row">
-                    @Html.LabelFor(model => item.MEDICAMENTO)
-                    @Html.TextAreaFor(model => item.MEDICAMENTO)
-                </div>
-                <div class="row">
-                    @Html.LabelFor(model => item.TRATAMIENTO)
-                    @Html.TextAreaFor(model => item.TRATAMIENTO)
-                </div>
-                <div class="row">
-                    @Html.LabelFor(model => item.ANTMORBIDO)
-                    @Html.TextAreaFor(model => item.ANTMORBIDO)
-                </div>
-       
+        <h4>@SistemaMediMan.Controllers.FichaController.NomPac(item.PAC_ID)</h4>
 
-        }
+         <div class="row"><!--inicio row 1-->
+             <div class="form-group col-lg-8 col-md-8 mb-5">
+                 @Html.LabelFor(model => item.MEDICO) 
+                 <div class="col-lg-12 col-md-12">
+                    @Html.EditorFor(model => item.MEDICO, new { htmlAttributes = new { @class = "form-control col-lg-12 col-md-12" } } )
+                 </div>
+             </div>
+         </div><!--fin row 1-->
+
+    <div class="row">
+        <div class="form-group col-lg-8 col-sm-8 mb-5">
+            @Html.LabelFor(model => item.DIAGNOSTICO)
+            <div class="col-lg-12 col-md-12">
+                @Html.EditorFor(model => item.DIAGNOSTICO, new { htmlAttributes = new { @class = "form-control col-lg-12 col-md-12" } })
+            </div>
+        </div>
+     </div>
+
+    <div class="row">
+        <div class="form-group col-lg-12 col-sm-12 mb-2">
+            @Html.LabelFor(model => item.MEDICAMENTO)
+            <div class="col-lg-12 col-md-12">
+                @Html.TextAreaFor(model => item.MEDICAMENTO, new {@class="form-control col-lg-12 col-md-12", rows="6" } )
+            </div>
+        </div>
     </div>
+
+    <div class="row">
+        <div class="form-group col-lg-12 col-md-12 mb-2">
+            @Html.LabelFor(model => item.TRATAMIENTO)
+            <div class="col-lg-12 col-md-12">
+                @Html.TextAreaFor(model => item.TRATAMIENTO, new { @class = "form-control col-lg-12 col-md-12", rows = "6" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-lg-12 col-sm-12 mb-2">
+            @Html.LabelFor(model => item.ANTMORBIDO)
+            <div class="col-lg-12 col-md-12">
+                @Html.TextAreaFor(model => item.ANTMORBIDO, new { @class = "form-control col-lg-12 col-md-12", rows = "6" })
+            </div>
+        </div>
+    </div>
+
+
+            }
+        </div>
 </main>
 
 
