@@ -224,3 +224,11 @@
     <div>
         @Html.ActionLink("Volver", "Index")
     </div>
+
+@section Scripts{
+    <script>
+        $("#ACT_ID").val("@Model.ACT_ID");
+        $("#DEP_ID").val("@Model.DEP_ID");
+    </script>
+
+    }
