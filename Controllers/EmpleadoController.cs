@@ -191,6 +191,41 @@ namespace SistemaMediMan.Controllers
         }
 
         //Queda pendiente verificación de contraseña (crear y editar)
+        public ActionResult Login()
+        {
+            return View();
+        }
+        /// <summary>
+        /// Control de login.
+        /// </summary>
+        /// <param name="User"></param>
+        /// <param name="Pass"></param>
+        /// <returns>Permite acceso a sesión.</returns>
+        [HttpPost]
+        public ActionResult Login(string User, string Pass)
+        {
+            try
+            {
+                using (mediManContext db = new mediManContext())
+                {
+                    var Us = (from d in db.EMPLEADOS
+                              where d.USER == User.Trim() && d.PASS == Pass.Trim()
+                              select d).FirstOrDefault();
+                    if (Us == null)
+                    {
+                        ViewBag.ErrorMessage = "Usuario o Contraseña incorrectos";
+                        return View();
+                    }
+                    Session["User"] = Us;
+                }
+                return RedirectToAction("Index","Paciente"); //reenviar vista calendario
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("", "Ha ocurrido un error inesperado " + e.Message);
+                return View();
+            }
+        }
     }
 
 }

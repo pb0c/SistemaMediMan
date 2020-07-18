@@ -149,6 +149,7 @@
     <Compile Include="Controllers\FichaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PacienteController.cs" />
+    <Compile Include="Filters\VerificarSession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -528,6 +529,7 @@
     <Content Include="Views\Paciente\ListaDep.cshtml" />
     <Content Include="Views\Paciente\ver.cshtml" />
     <Content Include="Views\Paciente\verFichas.cshtml" />
+    <Content Include="Views\Empleado\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
