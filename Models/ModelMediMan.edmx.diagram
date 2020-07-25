@@ -16,6 +16,7 @@
         <AssociationConnector Association="mediManModel.FK_RELATIONSHIP_7" ManuallyRouted="false" />
         <AssociationConnector Association="mediManModel.FK_RELATIONSHIP_6" ManuallyRouted="false" />
         <AssociationConnector Association="mediManModel.FK_RELATIONSHIP_8" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="mediManModel.Table" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

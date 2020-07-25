@@ -11,11 +11,7 @@ namespace SistemaMediMan.Models
 {
     using System;
     using System.Collections.Generic;
-
-    /// <summary>
-    /// Clase Consulta. Contiene todos los atributos que corresponden a la clase consulta
-    /// También se incluyen sus llaves foráneas.
-    /// </summary>
+    
     public partial class CONSULTAS
     {
         public int ID { get; set; }

@@ -218,7 +218,7 @@ namespace SistemaMediMan.Controllers
                     }
                     Session["User"] = Us;
                 }
-                return RedirectToAction("Index","Paciente"); //reenviar vista calendario
+                return RedirectToAction("Index","Consult"); //reenviar vista calendario
             }
             catch (Exception e)
             {

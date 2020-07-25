@@ -11,30 +11,15 @@ namespace SistemaMediMan.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-    /// <summary>
-    /// Clase Ficha. Contiene todos los atributos que corresponden a la clase ficha
-    /// También se incluyen sus llaves foráneas.
-    /// </summary>
+    
     public partial class FICHAS
     {
         public int ID { get; set; }
         public int PAC_ID { get; set; }
-        [Required]
-        [DisplayName("Médico Tratante")]
         public string MEDICO { get; set; }
-        [Required]
-        [DisplayName("Tratamiento")]
         public string TRATAMIENTO { get; set; }
-        [Required]
-        [DisplayName("Medicamento")]
         public string MEDICAMENTO { get; set; }
-        [Required]
-        [DisplayName("Diagnóstico")]
         public string DIAGNOSTICO { get; set; }
-        [Required]
-        [DisplayName("Antecedentes Mórbidos")]
         public string ANTMORBIDO { get; set; }
     
         public virtual PACIENTES PACIENTES { get; set; }

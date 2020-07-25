@@ -31,5 +31,6 @@ namespace SistemaMediMan.Models
         public virtual DbSet<EMPLEADOS> EMPLEADOS { get; set; }
         public virtual DbSet<FICHAS> FICHAS { get; set; }
         public virtual DbSet<PACIENTES> PACIENTES { get; set; }
+        public virtual DbSet<Table> Table { get; set; }
     }
 }

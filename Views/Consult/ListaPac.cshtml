@@ -1,0 +1,10 @@
+﻿@model IEnumerable<SistemaMediMan.Models.PACIENTES>
+
+<select id="PAC_ID" name="PAC_ID">
+    <option value="">Seleccione</option>
+    @foreach (var item in Model)
+    {
+
+        <option value="@item.ID">@item.nombreCompleto</option>
+    }
+</select>

@@ -1,28 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Data.SqlTypes;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Web;
-using SistemaMediMan.Models;
 
-namespace SistemaMediMan.Models.ViewModels
+
+namespace SistemaMediMan.Models
 {
-    public class ListPacienteViewModel
+    public class PacienteCE
     {
 		[Required]
 		[Display(Name = "Rut")]
 		public string RUT { get; set; }
 		[Required]
 		[Display(Name = "Nombre")]
-		[RegularExpression("^[a-zA-z]+$",ErrorMessage ="Solo debe contener letras")]
+		[RegularExpression("^[a-zA-z]+$", ErrorMessage = "Solo debe contener letras")]
 		public string NOMBRE { get; set; }
 		[Required]
-		[Display(Name ="ApellidoPaterno")]
+		[Display(Name = "ApellidoPaterno")]
 		[RegularExpression("^[a-zA-z]+$", ErrorMessage = "Solo debe contener letras")]
 		public string APELLIDOP { get; set; }
-		
+
 		[Display(Name = "ApellidoMaterno")]
 		[RegularExpression("^[a-zA-z]+$", ErrorMessage = "Solo debe contener letras")]
 		public string APELLIDOM { get; set; }
@@ -51,15 +49,18 @@ namespace SistemaMediMan.Models.ViewModels
 		public int NUMCALLE { get; set; }
 		public string DPTO { get; set; }
 		[Required]
-		[Display(Name = "Communa")]
+		[Display(Name = "Comuna")]
 		public string COMUNA { get; set; }
 		[Display(Name = "Actividad")]
-		public int Actividad_id { get; set; }
+		public int ACT_ID { get; set; }
 		[Display(Name = "Deporte")]
-		public int Deporte_id { get; set; }
+		public int DEP_ID { get; set; }
 	}
-
 	
+	[MetadataType(typeof(PacienteCE))]
 
-
+    public partial class PACIENTES
+    {
+        public string nombreCompleto { get { return NOMBRE + " " + APELLIDOP + " " + APELLIDOM; } }
+    }
 }

@@ -149,6 +149,7 @@
     <Compile Include="Controllers\FichaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PacienteController.cs" />
+    <Compile Include="Controllers\TableController.cs" />
     <Compile Include="Filters\VerificarSession.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -159,9 +160,11 @@
     <Compile Include="Models\CONSULTAS.cs">
       <DependentUpon>ModelMediMan.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ConsultCE.cs" />
     <Compile Include="Models\DEPORTES.cs">
       <DependentUpon>ModelMediMan.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmpleadoCE.cs" />
     <Compile Include="Models\EMPLEADOS.cs">
       <DependentUpon>ModelMediMan.tt</DependentUpon>
     </Compile>
@@ -183,7 +186,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelMediMan.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\PacienteCE.cs" />
     <Compile Include="Models\PACIENTES.cs">
+      <DependentUpon>ModelMediMan.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Table.cs">
       <DependentUpon>ModelMediMan.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\ListActividadViewModel.cs" />
@@ -506,7 +513,6 @@
     <Content Include="Views\Actividad\Index.cshtml" />
     <Content Include="Views\Deporte\Create.cshtml" />
     <Content Include="Views\Consult\Index.cshtml" />
-    <Content Include="Views\Consult\Create.cshtml" />
     <Content Include="Views\Deporte\Index.cshtml" />
     <Content Include="Views\Actividad\Create.cshtml" />
     <Content Include="Views\Ficha\Index.cshtml" />
@@ -530,6 +536,12 @@
     <Content Include="Views\Paciente\ver.cshtml" />
     <Content Include="Views\Paciente\verFichas.cshtml" />
     <Content Include="Views\Empleado\Login.cshtml" />
+    <Content Include="Views\Table\Calendar.cshtml" />
+    <Content Include="Views\Table\Index.cshtml" />
+    <Content Include="Views\Consult\Create.cshtml" />
+    <Content Include="Views\Consult\ListaPac.cshtml" />
+    <Content Include="Views\Consult\ListaEmp.cshtml" />
+    <Content Include="Views\Consult\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

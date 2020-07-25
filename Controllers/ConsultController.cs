@@ -91,21 +91,37 @@ namespace SistemaMediMan.Controllers
         // GET: Consult/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            using (mediManContext db = new mediManContext())
+            {
+                CONSULTAS c = db.CONSULTAS.Find(id);
+                return View(c);
+            }
         }
 
         // POST: Consult/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(CONSULTAS model)
         {
             try
             {
-                // TODO: Add update logic here
+                using (mediManContext db = new mediManContext())
+                {
+                    CONSULTAS con = db.CONSULTAS.Find(model.ID);
+                    con.PAC_ID = model.PAC_ID;
+                    con.EMP_ID = model.EMP_ID;
+                    con.FECHA = model.FECHA;
+                    con.HORA = model.HORA;
+                    con.SESION = model.SESION;
+                    con.BOX = model.BOX;
+                    
+                    db.SaveChanges();
 
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
             }
-            catch
+            catch (Exception e)
             {
+                ModelState.AddModelError("", "Error al actualizar " + e.Message);
                 return View();
             }
         }
@@ -113,7 +129,14 @@ namespace SistemaMediMan.Controllers
         // GET: Consult/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            using (mediManContext db = new mediManContext())
+            {
+                CONSULTAS c = db.CONSULTAS.Find(id);
+                db.CONSULTAS.Remove(c);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
         }
 
         // POST: Consult/Delete/5
@@ -134,29 +157,49 @@ namespace SistemaMediMan.Controllers
 
         public ActionResult Calendario()
         {
-            return View(new ListConsultaViewModel());
+            return View();
         }
 
-        public JsonResult GetEvents(DateTime start)
+        public JsonResult GetEvents()
         {
-            var viewModel = new ListConsultaViewModel();
-            var events = new List<ListConsultaViewModel>();
-            start = DateTime.Today.AddDays(-14);
-            
-            events.Add(new ListConsultaViewModel()
-                {
-                    Box = viewModel.Box,
-                    FechaHora = viewModel.FechaHora,
-                    Sesion = viewModel.Sesion,
-                    Paciente_id = viewModel.Paciente_id,
-                    Empleado_id = viewModel.Empleado_id,
-                });
-
-                start = start.AddDays(7);
-
-            return Json(events.ToArray(), JsonRequestBehavior.AllowGet);
+            using (mediManContext db = new mediManContext())
+            {
+                var events = db.CONSULTAS.ToList();
+                return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
         }
 
+        public static string NomPac(int PAC_ID)
+        {
+            using (mediManContext db = new mediManContext())
+            {
+                return db.PACIENTES.Find(PAC_ID).nombreCompleto;
 
+            }
+        }
+        public static string NomEmp(int EMP_ID)
+        {
+            using (mediManContext db = new mediManContext())
+            {
+                return db.EMPLEADOS.Find(EMP_ID).nombreCompleto;
+
+            }
+        }
+
+        public ActionResult ListaPac()
+        {
+            using (var db = new mediManContext())
+            {
+                return PartialView(db.PACIENTES.ToList());
+            }
+        }
+
+        public ActionResult ListaEmp()
+        {
+            using(var db = new mediManContext())
+            {
+                return PartialView(db.EMPLEADOS.ToList());
+            }
+        }
     }
 }

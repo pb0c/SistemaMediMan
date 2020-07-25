@@ -12,18 +12,14 @@ namespace SistemaMediMan.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ACTIVIDADES
+    public partial class Table
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ACTIVIDADES()
-        {
-            this.PACIENTES = new HashSet<PACIENTES>();
-        }
-    
-        public int ID { get; set; }
-        public string ACTIVIDAD { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PACIENTES> PACIENTES { get; set; }
+        public int Id { get; set; }
+        public string Subject { get; set; }
+        public string Description { get; set; }
+        public System.DateTime Start { get; set; }
+        public Nullable<System.DateTime> End { get; set; }
+        public string ThemeColor { get; set; }
+        public bool IsFullDay { get; set; }
     }
 }
